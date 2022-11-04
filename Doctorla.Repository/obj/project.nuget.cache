@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ajPpID6TNM3vsNU4tR+QYn0lN4gOLFKVDGQP/5c1lGOGdLrFmnz3f8q1wKenzuTkk9Hsgz9x9aDTX9GyZjIimQ==",
+  "success": true,
+  "projectFilePath": "C:\\git\\test\\backend\\Doctorla-Backend\\Doctorla.Repository\\Doctorla.Repository.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}
