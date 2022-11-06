@@ -16,6 +16,9 @@ namespace Doctorla.Core.Enums
 
         PermissionDenied = 206,
 
+        ObjectNotFound = 404,
+        ObjectAlreadyExists = 405,
+
         InternalServerError = 500,
     }
 }

@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "4b019317-5a14-472b-ba4c-478019342b16": {
+      "ProjectGuid": "4b019317-5a14-472b-ba4c-478019342b16",
+      "DisplayName": "Doctorla.Core",
+      "ColorIndex": 0
+    },
+    "77a1fd08-6de0-4c4b-b628-f7e453f42516": {
+      "ProjectGuid": "77a1fd08-6de0-4c4b-b628-f7e453f42516",
+      "DisplayName": "Doctorla.Api",
+      "ColorIndex": 1
+    },
+    "f2fb18b2-4822-4264-82f4-7c107e9be407": {
+      "ProjectGuid": "f2fb18b2-4822-4264-82f4-7c107e9be407",
+      "DisplayName": "Doctorla.Dto",
+      "ColorIndex": 2
+    },
+    "58980756-74ae-49de-9430-b8d8dea5aac1": {
+      "ProjectGuid": "58980756-74ae-49de-9430-b8d8dea5aac1",
+      "DisplayName": "Doctorla.Business",
+      "ColorIndex": 3
+    },
+    "c02ebc97-640a-47d4-9ca0-88d6c6ef0b60": {
+      "ProjectGuid": "c02ebc97-640a-47d4-9ca0-88d6c6ef0b60",
+      "DisplayName": "Doctorla.Data",
+      "ColorIndex": 4
+    },
+    "01cdb358-4d7d-4a68-8b6a-5edf4c6550db": {
+      "ProjectGuid": "01cdb358-4d7d-4a68-8b6a-5edf4c6550db",
+      "DisplayName": "Doctorla.Data.EF",
+      "ColorIndex": 5
+    },
+    "a98e4aa3-c395-4ec7-a329-17be4e8f1c7e": {
+      "ProjectGuid": "a98e4aa3-c395-4ec7-a329-17be4e8f1c7e",
+      "DisplayName": "Doctorla.Repository",
+      "ColorIndex": 6
+    }
+  },
+  "NextColorIndex": 7
+}

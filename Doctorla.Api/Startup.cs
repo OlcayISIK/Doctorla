@@ -1,8 +1,10 @@
 using Doctorla.Api.Helpers;
 using Doctorla.Business.Helpers;
 using Doctorla.Core;
+using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
 using Doctorla.Data.EF;
+using Doctorla.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -237,24 +239,24 @@ namespace Doctorla.Api
             }
         }
 
-        //private void UpdateDatabase(string connectionString)
-        //{
-        //    var builder = new DbContextOptionsBuilder<Context>();
-        //    builder.UseSqlServer(connectionString);
-        //    using var context = new Context(builder.Options);
-        //    context.Database.Migrate();
-        //    var firstAdminExists = context.Admins.Any();
-        //    if (!firstAdminExists)
-        //    {
-        //        context.Admins.Add(new Admin
-        //        {
-        //            Username = "admin",
-        //            HashedPassword = new CustomPasswordHasher().HashPassword("Hmpetleva1337."),
-        //            Status = UserStatus.Approved
-        //        });
-        //        context.SaveChanges();
-        //    }
-        //}
+        private void UpdateDatabase(string connectionString)
+        {
+            var builder = new DbContextOptionsBuilder<Context>();
+            builder.UseSqlServer(connectionString);
+            using var context = new Context(builder.Options);
+            context.Database.Migrate();
+            var firstAdminExists = context.Admins.Any();
+            if (!firstAdminExists)
+            {
+                context.Admins.Add(new Admin
+                {
+                    Username = "admin",
+                    HashedPassword = new CustomPasswordHasher().HashPassword("Hmpetleva1337."),
+                    Status = UserStatus.Approved
+                });
+                context.SaveChanges();
+            }
+        }
 
         private void CreateFileSystemDirectories()
         {

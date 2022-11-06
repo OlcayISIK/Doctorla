@@ -5,4 +5,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Doctorla.Data.EF\Doctorla.Data.EF.csproj" />
+    <ProjectReference Include="..\Doctorla.Dto\Doctorla.Dto.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Doctorla.Core\Doctorla.Core.csproj" />
     <ProjectReference Include="..\Doctorla.Data\Doctorla.Data.csproj" />
     <ProjectReference Include="..\Doctorla.Dto\Doctorla.Dto.csproj" />
+    <ProjectReference Include="..\Doctorla.Repository\Doctorla.Repository.csproj" />
   </ItemGroup>
 
 </Project>
