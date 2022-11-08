@@ -29,5 +29,11 @@ namespace Doctorla.Core.InternalDtos
         public int AccessTokenLifetime { get; set; } // Minutes
         public int RefreshTokenLifetime { get; set; } // Minutes
     }
+    public class IyzicoAPI
+    {
+        public string ApiKey { get; set; }
+        public string SecretKey { get; set; }
+        public string Url { get; set; }
+    }
 }
-}
+
