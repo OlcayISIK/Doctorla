@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\git\\Olcay\\Doctorla\\Doctorla.Api\\Doctorla.Api.csproj": {}
+    "D:\\Github\\Doctorla\\Doctorla.Api\\Doctorla.Api.csproj": {}
   },
   "projects": {
-    "C:\\git\\Olcay\\Doctorla\\Doctorla.Api\\Doctorla.Api.csproj": {
+    "D:\\Github\\Doctorla\\Doctorla.Api\\Doctorla.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\git\\Olcay\\Doctorla\\Doctorla.Api\\Doctorla.Api.csproj",
+        "projectUniqueName": "D:\\Github\\Doctorla\\Doctorla.Api\\Doctorla.Api.csproj",
         "projectName": "Doctorla.Api",
-        "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Api\\Doctorla.Api.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Api\\obj\\",
+        "projectPath": "D:\\Github\\Doctorla\\Doctorla.Api\\Doctorla.Api.csproj",
+        "packagesPath": "C:\\Users\\Olcay\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Doctorla\\Doctorla.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Olcay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -31,14 +32,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj"
               },
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
               },
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj"
               }
             }
           }
@@ -98,17 +99,10 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -117,24 +111,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\git\\Olcay\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj": {
+    "D:\\Github\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\git\\Olcay\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj",
+        "projectUniqueName": "D:\\Github\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj",
         "projectName": "Doctorla.Business",
-        "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Business\\obj\\",
+        "projectPath": "D:\\Github\\Doctorla\\Doctorla.Business\\Doctorla.Business.csproj",
+        "packagesPath": "C:\\Users\\Olcay\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Doctorla\\Doctorla.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Olcay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -148,17 +143,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
               },
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj"
               },
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj"
               },
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj"
               }
             }
           }
@@ -200,40 +195,34 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
+    "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj",
+        "projectUniqueName": "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj",
         "projectName": "Doctorla.Core",
-        "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\obj\\",
+        "projectPath": "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj",
+        "packagesPath": "C:\\Users\\Olcay\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Doctorla\\Doctorla.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Olcay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -274,40 +263,34 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\git\\Olcay\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj": {
+    "D:\\Github\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj",
+        "projectUniqueName": "D:\\Github\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj",
         "projectName": "Doctorla.Data.EF",
-        "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data.EF\\obj\\",
+        "projectPath": "D:\\Github\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj",
+        "packagesPath": "C:\\Users\\Olcay\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Doctorla\\Doctorla.Data.EF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Olcay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -321,11 +304,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
               },
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj"
               }
             }
           }
@@ -369,40 +352,34 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\git\\Olcay\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj": {
+    "D:\\Github\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj",
+        "projectUniqueName": "D:\\Github\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj",
         "projectName": "Doctorla.Data",
-        "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data\\obj\\",
+        "projectPath": "D:\\Github\\Doctorla\\Doctorla.Data\\Doctorla.Data.csproj",
+        "packagesPath": "C:\\Users\\Olcay\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Doctorla\\Doctorla.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Olcay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -416,8 +393,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
               }
             }
           }
@@ -437,40 +414,34 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\git\\Olcay\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj": {
+    "D:\\Github\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\git\\Olcay\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj",
+        "projectUniqueName": "D:\\Github\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj",
         "projectName": "Doctorla.Dto",
-        "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Dto\\obj\\",
+        "projectPath": "D:\\Github\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj",
+        "packagesPath": "C:\\Users\\Olcay\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Doctorla\\Doctorla.Dto\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Olcay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -484,8 +455,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Core\\Doctorla.Core.csproj"
               }
             }
           }
@@ -505,40 +476,34 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\git\\Olcay\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj": {
+    "D:\\Github\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\git\\Olcay\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj",
+        "projectUniqueName": "D:\\Github\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj",
         "projectName": "Doctorla.Repository",
-        "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Repository\\obj\\",
+        "projectPath": "D:\\Github\\Doctorla\\Doctorla.Repository\\Doctorla.Repository.csproj",
+        "packagesPath": "C:\\Users\\Olcay\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\Doctorla\\Doctorla.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Olcay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -552,11 +517,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Data.EF\\Doctorla.Data.EF.csproj"
               },
-              "C:\\git\\Olcay\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj": {
-                "projectPath": "C:\\git\\Olcay\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj"
+              "D:\\Github\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj": {
+                "projectPath": "D:\\Github\\Doctorla\\Doctorla.Dto\\Doctorla.Dto.csproj"
               }
             }
           }
@@ -576,23 +541,16 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
