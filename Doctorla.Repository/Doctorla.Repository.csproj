@@ -1,12 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Doctorla.Data.EF\Doctorla.Data.EF.csproj" />
+    <ProjectReference Include="..\Doctorla.Data\Doctorla.Data.csproj" />
     <ProjectReference Include="..\Doctorla.Dto\Doctorla.Dto.csproj" />
   </ItemGroup>
 

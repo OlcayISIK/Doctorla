@@ -21,8 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Doctorla.Business\Doctorla.Business.csproj" />
-    <ProjectReference Include="..\Doctorla.Core\Doctorla.Core.csproj" />
-    <ProjectReference Include="..\Doctorla.Data.EF\Doctorla.Data.EF.csproj" />
   </ItemGroup>
 
 </Project>

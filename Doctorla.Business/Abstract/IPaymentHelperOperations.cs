@@ -10,7 +10,7 @@ namespace Doctorla.Business.Abstract
 {
     public interface IPaymentHelperOperations
     {
-        PaymentResult BuyPackage(PackageBuyResult data, string ip);
-        PaymentResult BuyAppointment(AppointmentBuyResult data, string ip);
+        //PaymentResult BuyPackage(PackageBuyResult data, string ip);
+        //PaymentResult BuyAppointment(AppointmentBuyResult data, string ip);
     }
 }
