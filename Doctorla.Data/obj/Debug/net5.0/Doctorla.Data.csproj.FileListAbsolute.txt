@@ -1,5 +1,0 @@
-C:\git\Olcay\Doctorla\Doctorla.Data\obj\Debug\net5.0\Doctorla.Data.csproj.AssemblyReference.cache
-C:\git\Olcay\Doctorla\Doctorla.Data\obj\Debug\net5.0\Doctorla.Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\git\Olcay\Doctorla\Doctorla.Data\obj\Debug\net5.0\Doctorla.Data.AssemblyInfoInputs.cache
-C:\git\Olcay\Doctorla\Doctorla.Data\obj\Debug\net5.0\Doctorla.Data.AssemblyInfo.cs
-C:\git\Olcay\Doctorla\Doctorla.Data\obj\Debug\net5.0\Doctorla.Data.csproj.CoreCompileInputs.cache
