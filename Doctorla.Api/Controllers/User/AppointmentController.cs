@@ -14,5 +14,6 @@ namespace Doctorla.Api.Controllers.User
     public class AppointmentController : Controller
     {
         IyzicoAPI configIyzicoAPI;
+        private readonly IAppointmentService _appointmentService;
     }
 }
