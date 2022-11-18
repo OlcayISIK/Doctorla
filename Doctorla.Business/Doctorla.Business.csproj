@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
@@ -14,9 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Doctorla.Core\Doctorla.Core.csproj" />
-    <ProjectReference Include="..\Doctorla.Data\Doctorla.Data.csproj" />
-    <ProjectReference Include="..\Doctorla.Dto\Doctorla.Dto.csproj" />
     <ProjectReference Include="..\Doctorla.Repository\Doctorla.Repository.csproj" />
   </ItemGroup>
 

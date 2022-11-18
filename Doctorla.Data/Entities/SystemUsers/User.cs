@@ -1,7 +1,6 @@
 ﻿using Doctorla.Core.Enums;
 using Doctorla.Data.Entities.DailyChecking;
 using Doctorla.Data.Entities.Doctor;
-using Doctorla.Data.Entities.SystemAppointments;
 using Doctorla.Data.Entities.SystemPackages;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Doctorla.Data.Entities.SystemAppoinments;
 
 namespace Doctorla.Data.Entities.SystemUsers
 {
