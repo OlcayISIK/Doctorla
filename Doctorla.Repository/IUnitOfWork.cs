@@ -17,6 +17,7 @@ namespace Doctorla.Repository
         IAdminRepository Admins { get; }
         IUserRepository Users { get; }
         IHospitalRepository Hospitals { get; }
+        IDoctorRepository Doctors { get; }
 
     }
 }

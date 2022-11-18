@@ -1,12 +1,11 @@
 ﻿using Doctorla.Data.Entities.SystemUsers;
-using Doctorla.Dto.SystemAppoinment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Dto.SystemAppoinments
+namespace Doctorla.Dto.SystemAppoinment
 {
     public class AppointmentProcessDto
     {
