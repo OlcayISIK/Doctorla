@@ -24,7 +24,7 @@ namespace Doctorla.Repository
             return Context.Set<TEntity>().Where(x => !x.IsDeleted);
         }
 
-        public IQueryable<TEntity> Get(long id)
+        public IQueryable<TEntity> Get(int id)
         {
             return Context.Set<TEntity>().Where(x => !x.IsDeleted && x.Id == id);
         }
@@ -50,26 +50,26 @@ namespace Doctorla.Repository
         {
             if (updateCreationProperties)
             {
-                entity.CreatedAt = dateTime;
+                entity.IDate = dateTime;
             }
-            entity.LastModifiedAt = dateTime;
+            entity.UUDate = dateTime;
         }
 
-        public void Remove(long id)
+        public void Remove(int id)
         {
             var entry = Context.Attach(new TEntity { Id = id });
             entry.Property(x => x.IsDeleted).IsModified = true;
             entry.Property(x => x.IsDeleted).CurrentValue = true;
-            entry.Property(x => x.LastModifiedAt).IsModified = true;
-            entry.Property(x => x.LastModifiedAt).CurrentValue = Context.Now;
+            entry.Property(x => x.UUDate).IsModified = true;
+            entry.Property(x => x.UUDate).CurrentValue = Context.Now;
         }
 
-        public void HardRemove(long id)
+        public void HardRemove(int id)
         {
             Context.Set<TEntity>().Remove(new TEntity { Id = id });
         }
 
-        public void HardRemoveRange(IEnumerable<long> ids)
+        public void HardRemoveRange(IEnumerable<int> ids)
         {
             Context.Set<TEntity>().RemoveRange(ids.Select(x => new TEntity { Id = x }));
         }
@@ -87,7 +87,7 @@ namespace Doctorla.Repository
                 }
                 entry.Property(x => x.IsDeleted).IsModified = true;
                 entry.Property(x => x.IsDeleted).CurrentValue = true;
-                entity.LastModifiedAt = now;
+                entity.UUDate = now;
             }
         }
     }

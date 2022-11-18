@@ -1,15 +1,14 @@
 ﻿using Doctorla.Data.Entities;
+using Doctorla.Data.Entities.SystemUsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Data
+namespace Doctorla.Repository.Abstract
 {
-    public class HospitalBoundEntity : Entity
+    public interface IDoctorRepository : IRepository<User>
     {
-        public long HospitalId { get; set; }
-        public Hospital Hospital { get; set; }
     }
 }

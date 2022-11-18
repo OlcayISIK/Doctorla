@@ -61,7 +61,7 @@ namespace Doctorla.Business.Helpers
         public void Map<TSource, TDestination>(TSource source, TDestination destination, Language language, DateTime now) where TDestination : Entity
         {
             _mapper.Map(source, destination, opts => opts.Items[nameof(Language)] = language);
-            destination.LastModifiedAt = now;
+            destination.UUDate = now;
         }
     }
 }
