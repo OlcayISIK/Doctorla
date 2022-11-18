@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Entities
 {
-    public class Doc : Entity
+    public class Hospital : Entity
     {
         public string Name { get; set; }
     }
