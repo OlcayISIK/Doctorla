@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Dto.SystemAppoinment
 {
-    internal class AppointmentFilesDto
+    public class AppointmentFilesDto
     {
         public int Id { get; set; }
         public bool IsActive { get; set; }

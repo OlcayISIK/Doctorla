@@ -7,15 +7,8 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Entities.SystemUsers
 {
-    public class UserDetail : IBaseEntity
+    public class UserDetail : Entity
     {
-        public int Id { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
         public string UserJob { get; set; }
         public string Note { get; set; }
         public int Height { get; set; }

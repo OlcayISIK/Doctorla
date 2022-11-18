@@ -9,16 +9,8 @@ using Doctorla.Data.Entities.SystemUsers;
 
 namespace Doctorla.Data.Entities.Doctor
 {
-    public class DoctorDetail : IBaseEntity
+    public class DoctorDetail : Entity
     {
-        public int Id { get; set; }
-        public int DoctorUniqueId { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
         public string Title { get; set; } // Ünvan
         public string HospitalName { get; set; }
         public string UniverstyName { get; set; }

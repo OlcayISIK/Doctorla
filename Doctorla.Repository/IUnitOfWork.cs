@@ -15,6 +15,8 @@ namespace Doctorla.Repository
 
         IRedisTokenRepository RedisTokens { get; }
         IAdminRepository Admins { get; }
+        IUserRepository Users { get; }
+        IHospitalRepository Hospitals { get; }
 
     }
 }

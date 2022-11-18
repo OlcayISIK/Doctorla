@@ -1,4 +1,7 @@
-﻿using Doctorla.Dto.SystemAppoinment;
+﻿using Doctorla.Data.Entities;
+using Doctorla.Data.Entities.SystemAppoinments;
+using Doctorla.Data.Entities.SystemUsers;
+using Doctorla.Dto.SystemAppoinment;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Doctorla.Core\Doctorla.Core.csproj" />
+    <ProjectReference Include="..\Doctorla.Data\Doctorla.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

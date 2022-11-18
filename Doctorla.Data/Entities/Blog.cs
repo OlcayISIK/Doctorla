@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Entities
 {
-    public class Blog : IBaseEntity
+    public class Blog : Entity
     {
-        public int Id { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }

@@ -7,15 +7,8 @@ using Doctorla.Data.Entities.SystemUsers;
 // using Base;
 namespace Doctorla.Data.Entities.SystemAppoinments
 {
-    public class Appointment : IBaseEntity
+    public class Appointment : Entity
     {
-        public int Id { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
         public int UserId { get; set; }
         public int DoctorId { get; set; }
         public string DoctorName { get; set; }

@@ -7,15 +7,8 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Entities.SystemAppoinments
 {
-    public class AppointmentFiles : IBaseEntity
+    public class AppointmentFiles : Entity
     {
-        public int Id { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
         public string FileName { get; set; }
         public int AppointmentId { get; set; }
         public int UserId { get; set; }

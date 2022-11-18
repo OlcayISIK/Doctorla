@@ -7,15 +7,8 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Entities.SystemPackages
 {
-    public class PackageDetail : IBaseEntity
+    public class PackageDetail : Entity
     {
-        public int Id { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
         public int ScreenOrder { get; set; }
         public bool IsPremium { get; set; }
         public bool AddDefaultOfferDays { get; set; }

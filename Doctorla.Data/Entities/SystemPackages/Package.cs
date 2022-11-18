@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Entities.SystemPackages
 {
-    public class Package : IBaseEntity
+    public class Package : Entity
     {
-        public int Id { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
         public string PackegeName { get; set; }
         public string Description { get; set; }
         public bool IsPremium { get; set; }

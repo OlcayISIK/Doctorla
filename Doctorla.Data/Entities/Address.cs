@@ -8,16 +8,8 @@ using Doctorla.Data.Entities.SystemUsers;
 
 namespace Doctorla.Data.Entities
 {
-    public class Address : IBaseEntity
+    public class Address : Entity
     {
-        public int Id { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
-
         public int CountryId { get; set; }
         public int CityId { get; set; }
         public int CountyId { get; set; }

@@ -8,15 +8,8 @@ using Doctorla.Data.Entities.SystemUsers;
 
 namespace Doctorla.Data.Entities.SystemPackages
 {
-    public class RelUserDepartment : IBaseEntity
+    public class RelUserDepartment : Entity
     {
-        public int Id { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime IDate { get; set; }
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
         public int Price { get; set; }
         public int SessionTime { get; set; }
         public int DepartmentId { get; set; }
