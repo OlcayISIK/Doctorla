@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Repository.Concrete
+namespace Doctorla.Repository
 {
     public sealed class UnitOfWork : IUnitOfWork
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Doctorla.Data.Entities.SystemUsers;
 // using Base;
-namespace Doctorla.Data.Entities.SystemAppointments
+namespace Doctorla.Data.Entities.SystemAppoinments
 {
     public class Appointment : IBaseEntity
     {

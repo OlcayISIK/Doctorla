@@ -1,4 +1,4 @@
-﻿using Doctorla.Data.Entities.SystemAppointments;
+﻿using Doctorla.Data.Entities.SystemAppoinments;
 using Doctorla.Data.Entities.SystemPackages;
 using System;
 using System.Collections.Generic;

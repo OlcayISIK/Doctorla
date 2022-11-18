@@ -1,6 +1,5 @@
 ﻿using Doctorla.Data;
 using Doctorla.Data.EF;
-using Doctorla.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Repository.Concrete
+namespace Doctorla.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {

@@ -12,10 +12,10 @@ using Doctorla.Data.Entities;
 using Doctorla.Data.Entities.DailyChecking;
 using Doctorla.Data.Entities.Doctor;
 using Doctorla.Data.Entities.Region;
-using Doctorla.Data.Entities.SystemAppointments;
 using Doctorla.Data.Entities.SystemPackages;
 using Doctorla.Data.Entities.SystemUsers;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Doctorla.Data.Entities.SystemAppoinments;
 
 namespace Doctorla.Data.EF
 {
@@ -28,48 +28,48 @@ namespace Doctorla.Data.EF
 
         #region Entities
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<UserType> UserType { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<RelUserDepartment> RelUserDepartment { get; set; }
-        public DbSet<Department> Department { get; set; }
-        public DbSet<RoleGroup> RoleGroup { get; set; }
-        public DbSet<Referance> Referance { get; set; }
-        public DbSet<Menu> Menu { get; set; }
-        public DbSet<MenuType> MenuType { get; set; }
-        public DbSet<Country> Country { get; set; }
-        public DbSet<City> City { get; set; }
-        public DbSet<County> County { get; set; }
-        public DbSet<Address> Address { get; set; }
-        public DbSet<AddressType> AddressType { get; set; }
-        public DbSet<Contact> Contact { get; set; }
-        public DbSet<Sick> Sick { get; set; }
-        public DbSet<Appointment> Appointment { get; set; }
+        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<RelUserDepartment> RelUserDepartments { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<RoleGroup> RoleGroups { get; set; }
+        public DbSet<Referance> Referances { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<MenuType> MenuTypes { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<County> Counties { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<AddressType> AddressTypes { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Sick> Sicks { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
         public DbSet<AppointmentFiles> AppointmentFiles { get; set; }
-        public DbSet<AppointmentProcess> AppointmentProcess { get; set; }
-        public DbSet<UserDetail> UserDetail { get; set; }
-        public DbSet<DoctorDetail> DoctorDetail { get; set; }
+        public DbSet<AppointmentProcess> AppointmentProcesses { get; set; }
+        public DbSet<UserDetail> UserDetails { get; set; }
+        public DbSet<DoctorDetail> DoctorDetails { get; set; }
         public DbSet<DoctorExperiences> DoctorExperiences { get; set; }
         public DbSet<DoctorMedicalInterests> DoctorMedicalInterests { get; set; }
-        public DbSet<DoctorScientificMembership> DoctorScientificMembership { get; set; }
+        public DbSet<DoctorScientificMembership> DoctorScientificMemberships { get; set; }
         public DbSet<DoctorEducations> DoctorEducations { get; set; }
         public DbSet<Donations> Donations { get; set; }
         public DbSet<ErrorLog> ErrorLogs { get; set; }
-        public DbSet<DailyCheck> DailyCheck { get; set; }
-        public DbSet<DailyCheckDetail> DailyCheckDetail { get; set; }
+        public DbSet<DailyCheck> DailyChecks { get; set; }
+        public DbSet<DailyCheckDetail> DailyCheckDetails { get; set; }
         public DbSet<DailyCheckDetailValues> DailyCheckDetailValues { get; set; }
         public DbSet<DailyCheckPackages> DailyCheckPackages { get; set; }
-        public DbSet<DailyCheckPackagesValues> DailyCheckPackagesValues { get; set; }
-        public DbSet<PaymentProcess> PaymentProcess { get; set; }
-        public DbSet<PackageChat> PackageChat { get; set; }
+        public DbSet<DailyCheckPackagesValues> DailyCheckPackageValues { get; set; }
+        public DbSet<PaymentProcess> PaymentProcesses { get; set; }
+        public DbSet<PackageChat> PackageChats { get; set; }
         public DbSet<DailyCheckAlerts> DailyCheckAlerts { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Blog> Blog { get; set; }
-        public DbSet<Package> Package { get; set; }
-        public DbSet<PackageDetail> PackageDetail { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Package> Packages { get; set; }
+        public DbSet<PackageDetail> PackageDetails { get; set; }
         public DbSet<PackageOffers> PackageOffers { get; set; }
-        public DbSet<RelPackageDetail> RelPackageDetail { get; set; }
-        public DbSet<Campaign> Campaign { get; set; }
-        public DbSet<UsedCampaign> UsedCampaign { get; set; }
+        public DbSet<RelPackageDetail> RelPackageDetails { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<UsedCampaign> UsedCampaigns { get; set; }
         #endregion
         public Context(string connectionString)
         {

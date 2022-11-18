@@ -7,9 +7,10 @@ using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
 using Doctorla.Data.Entities;
+using Doctorla.Data.Entities.SystemUsers;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
-using Doctorla.Repository.Abstract;
+using Doctorla.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -189,9 +190,7 @@ namespace Doctorla.Business.Concrete
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var userId = claims.UserId;
-            var activeReservation = await _unitOfWork.Reservations.GetCustomerActiveReservations(userId).AnyAsync();
-            if (activeReservation)
-                return Result<bool>.CreateErrorResult(ErrorCode.CannotDeleteAccountWithReservation);
+
             _unitOfWork.Users.RemoveAccount(userId);
             await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);
@@ -475,7 +474,5 @@ namespace Doctorla.Business.Concrete
             return Result<bool>.CreateSuccessResult(true);
         }
         #endregion
-
-
     }
 }

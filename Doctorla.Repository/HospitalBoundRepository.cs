@@ -1,7 +1,6 @@
 ﻿using Doctorla.Data;
 using Doctorla.Data.EF;
 using Doctorla.Dto;
-using Doctorla.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Repository.Concrete
+namespace Doctorla.Repository
 {
     public abstract class HospitalBoundRepository<TEntity> : IHospitalBoundRepository<TEntity> where TEntity : HospitalBoundEntity, new()
     {

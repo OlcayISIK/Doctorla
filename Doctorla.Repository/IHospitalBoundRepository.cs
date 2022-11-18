@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Repository.Abstract
+namespace Doctorla.Repository
 {
     public interface IHospitalBoundRepository<TEntity> where TEntity : HospitalBoundEntity, new()
     {

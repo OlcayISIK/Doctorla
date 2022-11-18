@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Doctorla.Data.Entities.SystemUsers;
 
-namespace Doctorla.Data.Entities.SystemAppointments
+namespace Doctorla.Data.Entities.SystemAppoinments
 {
     public class AppointmentProcess
     {
