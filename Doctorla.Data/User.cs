@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Data.Doctors
+namespace Doctorla.Data
 {
-    public class Doctor : Entity
+    public class User : Member
     {
     }
 }

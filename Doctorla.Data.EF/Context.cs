@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Doctorla.Data;
 using System.Threading.Tasks;
 using Doctorla.Data.Entities;
 using Doctorla.Data.Entities.DailyChecking;
@@ -16,9 +15,6 @@ using Doctorla.Data.Entities.SystemPackages;
 using Doctorla.Data.Entities.SystemUsers;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Doctorla.Data.Entities.SystemAppoinments;
-using Doctorla.Data.Admins;
-using Doctorla.Data.Hospitals;
-using Doctorla.Data.Doctors;
 
 namespace Doctorla.Data.EF
 {

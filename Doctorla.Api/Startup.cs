@@ -251,7 +251,7 @@ namespace Doctorla.Api
             {
                 context.Admins.Add(new Admin
                 {
-                    Username = "admin",
+                    Email = "admin",
                     HashedPassword = new CustomPasswordHasher().HashPassword("testpass"),
                     Status = UserStatus.Approved
                 });

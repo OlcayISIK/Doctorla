@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data
 {
-    public class Entity
+    public abstract class Entity
     {
         public long Id { get; set; }
         public bool IsDeleted { get; set; }

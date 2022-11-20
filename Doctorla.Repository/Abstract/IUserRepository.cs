@@ -1,4 +1,4 @@
-﻿using Doctorla.Data.Entities.SystemUsers;
+﻿using Doctorla.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
