@@ -21,9 +21,9 @@ namespace Doctorla.Api.Controllers.Doctor
     [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.Doctor)]
     public class AppointmentController : Controller
     {
-        private readonly IAppoinmentOperations _operations;
+        private readonly IAppointmentOperations _operations;
 
-        public AppointmentController(IAppoinmentOperations operations)
+        public AppointmentController(IAppointmentOperations operations)
         {
             _operations = operations;
         }
@@ -40,7 +40,7 @@ namespace Doctorla.Api.Controllers.Doctor
         /// <summary>
         /// Approve an appointment for doctor
         /// </summary>
-        [HttpGet("accept")]
+        [HttpGet("approve")]
         public async Task<Result<bool>> ApproveAppointment(long appointmentId)
         {
             return await _operations.ApproveAppointment(appointmentId);
