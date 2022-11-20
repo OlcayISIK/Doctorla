@@ -9,8 +9,4 @@
     <ProjectReference Include="..\Doctorla.Core\Doctorla.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Shared\" />
-  </ItemGroup>
-
 </Project>

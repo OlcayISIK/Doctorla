@@ -9,7 +9,7 @@ namespace Doctorla.Api.Controllers.User
     /// Appointment related endpoints
     /// </summary>
     [ApiController]
-    [Route("api/admin/[controller]")]
+    [Route("api/user/[controller]")]
     [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.User)]
     public class AppointmentController : Controller
     {

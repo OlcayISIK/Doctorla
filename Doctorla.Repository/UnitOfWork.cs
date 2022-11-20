@@ -17,10 +17,12 @@ namespace Doctorla.Repository
         public IUserRepository Users { get; }
         public IHospitalRepository Hospitals { get; }
         public IDoctorRepository Doctors { get; }
+        public IAppointmentRepository Appointments { get; }
 
         public UnitOfWork(Context context, IRedisTokenRepository refreshTokens,
             IAdminRepository admins, IUserRepository users,
-            IHospitalRepository hospitals, IDoctorRepository doctors)
+            IHospitalRepository hospitals, IDoctorRepository doctors,
+            IAppointmentRepository appointments)
         {
             _context = context;
             RedisTokens = refreshTokens;
@@ -28,6 +30,7 @@ namespace Doctorla.Repository
             Users = users;
             Hospitals = hospitals;
             Doctors = doctors;
+            Appointments = appointments;
         }
         public void Dispose()
         {

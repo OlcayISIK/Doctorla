@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Hospital\" />
-    <Folder Include="Controllers\Doctor\" />
   </ItemGroup>
 
 </Project>

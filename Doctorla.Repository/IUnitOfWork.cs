@@ -18,6 +18,7 @@ namespace Doctorla.Repository
         IUserRepository Users { get; }
         IHospitalRepository Hospitals { get; }
         IDoctorRepository Doctors { get; }
+        IAppointmentRepository Appointments { get; }
 
     }
 }
