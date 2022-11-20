@@ -34,13 +34,13 @@ namespace Doctorla.Api.Controllers.Doctor
         [HttpGet("getall")]
         public async Task<Result<IEnumerable<AppointmentDto>>> GetAll()
         {
-            return await _operations.GetAll();
+            return await _operations.GetAllForDoctor();
         }
 
         /// <summary>
         /// Approve an appointment for doctor
         /// </summary>
-        [HttpGet("approve")]
+        [HttpPost("approve")]
         public async Task<Result<bool>> ApproveAppointment(long appointmentId)
         {
             return await _operations.ApproveAppointment(appointmentId);
@@ -49,7 +49,7 @@ namespace Doctorla.Api.Controllers.Doctor
         /// <summary>
         /// Rejects an appointment for doctor
         /// </summary>
-        [HttpGet("reject")]
+        [HttpPost("reject")]
         public async Task<Result<bool>> RejectAppointment(long appointmentId)
         {
             return await _operations.RejectAppointment(appointmentId);

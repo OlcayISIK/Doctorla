@@ -1,7 +1,9 @@
 ﻿using Doctorla.Business.Abstract;
 using Doctorla.Business.Helpers;
+using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
+using Doctorla.Data.Shared;
 using Doctorla.Dto;
 using Doctorla.Dto.Shared;
 using Doctorla.Repository;
@@ -28,8 +30,40 @@ namespace Doctorla.Business.Concrete
             _httpContextAccessor = httpContextAccessor;
         }
 
+        #region User
+        public async Task<Result<IEnumerable<AppointmentDto>>> GetAllForUser()
+        {
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.UserId == claims.Id);
+            var dtos = await _mapper.ProjectTo<AppointmentDto>(appointments).ToListAsync();
+            return Result<IEnumerable<AppointmentDto>>.CreateSuccessResult(dtos);
+        }
+
+        public async Task<Result<bool>> AddForUser(AppointmentDto appointmentDto)
+        {
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var appointment = _mapper.Map<Appointment>(appointmentDto);
+            appointment.AppointmentStatus = AppointmentStatus.Created;
+            appointment.UserId = claims.Id;
+
+            _unitOfWork.Appointments.Add(appointment);
+            await _unitOfWork.Commit();
+
+            return Result<bool>.CreateSuccessResult(true);
+        }
+
+        public async Task<Result<bool>> CancelAppointment(long appointmentId)
+        {
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.UserId == claims.Id).FirstOrDefaultAsync();
+            appointment.AppointmentStatus = AppointmentStatus.CanceledByUser;
+            await _unitOfWork.Commit();
+            return Result<bool>.CreateSuccessResult(true);
+        }
+        #endregion
+
         #region Doctor
-        public async Task<Result<IEnumerable<AppointmentDto>>> GetAll()
+        public async Task<Result<IEnumerable<AppointmentDto>>> GetAllForDoctor()
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.DoctorId == claims.Id);
@@ -37,14 +71,22 @@ namespace Doctorla.Business.Concrete
             return Result<IEnumerable<AppointmentDto>>.CreateSuccessResult(dtos);
         }
 
-        public Task<Result<bool>> ApproveAppointment(long appointmentId)
+        public async Task<Result<bool>> ApproveAppointment(long appointmentId)
         {
-            throw new NotImplementedException();
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.DoctorId == claims.Id).FirstOrDefaultAsync();
+            appointment.AppointmentStatus = AppointmentStatus.Approved;
+            await _unitOfWork.Commit();
+            return Result<bool>.CreateSuccessResult(true);
         }
 
-        public Task<Result<bool>> RejectAppointment(long appointmentId)
+        public async Task<Result<bool>> RejectAppointment(long appointmentId)
         {
-            throw new NotImplementedException();
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.DoctorId == claims.Id).FirstOrDefaultAsync();
+            appointment.AppointmentStatus = AppointmentStatus.CanceledByDoctor;
+            await _unitOfWork.Commit();
+            return Result<bool>.CreateSuccessResult(true);
         }
         #endregion
     }

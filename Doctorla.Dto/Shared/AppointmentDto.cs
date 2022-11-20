@@ -1,12 +1,5 @@
 ﻿using Doctorla.Core.Enums;
-using Doctorla.Data.Entities;
-using Doctorla.Data.Entities.SystemAppoinments;
-using Doctorla.Data.Entities.SystemUsers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Doctorla.Dto.Shared
 {
