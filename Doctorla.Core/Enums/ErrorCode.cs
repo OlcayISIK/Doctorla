@@ -8,7 +8,7 @@ namespace Doctorla.Core.Enums
 {
     public enum ErrorCode
     {
-        InvalidUsernameOrPassword = 101,
+        InvalidEmailOrPassword = 101,
         InvalidRefreshToken = 102,
         InvalidPasswordResetToken = 103,
         InvalidAction = 104,

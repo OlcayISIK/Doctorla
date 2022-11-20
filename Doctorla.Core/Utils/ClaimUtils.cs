@@ -11,12 +11,9 @@ namespace Doctorla.Core.Utils
 {
     public static class ClaimUtils
     {
-        private const string Username = "name";
-        private const string UserId = "uid";
-        private const string HospitalId = "hid";
-        private const string UserType = "rid";
-        private const string GuestUser = "guest";
-        private const string CanSeeHiddenHospitals = "csh";
+        private const string Id = "id";
+        private const string Email = "email";
+        private const string AccountType = "atype";
 
         public static DoctorlaClaims GetClaims(IEnumerable<Claim> claims)
         {
@@ -26,69 +23,27 @@ namespace Doctorla.Core.Utils
             {
                 switch (claim.Type)
                 {
-                    case Username:
-                        dsc.Username = claim.Value;
+                    case Email:
+                        dsc.Email = claim.Value;
                         break;
-                    case UserId:
-                        dsc.UserId = long.Parse(claim.Value);
+                    case Id:
+                        dsc.Id = long.Parse(claim.Value);
                         break;
-                    case HospitalId:
-                        dsc.HospitalId = long.Parse(claim.Value);
-                        break;
-                    case UserType:
-                        dsc.UserType = (UserType)int.Parse(claim.Value);
-                        break;
-                    case GuestUser:
-                        dsc.GuestUser = bool.Parse(claim.Value);
-                        break;
-                    case CanSeeHiddenHospitals:
-                        dsc.CanSeeHiddenHospitals = bool.Parse(claim.Value);
+                    case AccountType:
+                        dsc.AccountType = (AccountType)int.Parse(claim.Value);
                         break;
                 }
             }
             return dsc;
         }
 
-        public static Claim[] CreateDoctorClaims(long userId, string username, UserType userType, long hospitalId)
+        public static Claim[] CreateClaims(long id, string email, AccountType accountType)
         {
             return new[]
             {
-                new Claim(Username, username),
-                new Claim(UserId, userId.ToString()),
-                new Claim(UserType, ((int)userType).ToString()),
-                new Claim(HospitalId, hospitalId.ToString())
-            };
-        }
-
-        public static Claim[] CreateUserClaims(long userId, string username, UserType userType)
-        {
-            return new[]
-            {
-                new Claim(Username, username),
-                new Claim(UserId, userId.ToString()),
-                new Claim(UserType, ((int)userType).ToString()),
-            };
-        }
-
-        public static IEnumerable<Claim> CreateAdminClaims(long userId, string username)
-        {
-            return new[]
-            {
-                new Claim(UserId, userId.ToString()),
-                new Claim(GuestUser, false.ToString()),
-                new Claim(Username, username),
-                new Claim(CanSeeHiddenHospitals, true.ToString())
-            };
-        }
-
-        public static IEnumerable<Claim> CreateHospitalClaims(long userId, string username)
-        {
-            return new[]
-            {
-                new Claim(UserId, userId.ToString()),
-                new Claim(GuestUser, false.ToString()),
-                new Claim(Username, username),
-                new Claim(CanSeeHiddenHospitals, true.ToString())
+                new Claim(Id, id.ToString()),
+                new Claim(Email, email),
+                new Claim(AccountType, ((int)accountType).ToString()),
             };
         }
     }

@@ -15,13 +15,13 @@ namespace Doctorla.Business.Helpers.Token
 {
     public static class TokenCreator
     {
-        public static TokenDto CreateAdminToken(long userId, string username, TokenOptions tokenOptions)
+        public static TokenDto CreateToken(long id, string email, AccountType accountType, TokenOptions tokenOptions)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(tokenOptions.AdminSecretKey);
+            var key = Encoding.ASCII.GetBytes(GetSecretKey(accountType, tokenOptions));
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(ClaimUtils.CreateAdminClaims(userId, username)),
+                Subject = new ClaimsIdentity(ClaimUtils.CreateClaims(id, email, accountType)),
                 Expires = DateTime.UtcNow.AddMinutes(tokenOptions.AccessTokenLifetime),
                 IssuedAt = DateTime.UtcNow,
                 NotBefore = DateTime.UtcNow,
@@ -36,66 +36,21 @@ namespace Doctorla.Business.Helpers.Token
             };
         }
 
-        public static TokenDto CreateHospitalToken(long hospitalId, string username, TokenOptions tokenOptions)
+        private static string GetSecretKey(AccountType accountType, TokenOptions tokenOptions)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(tokenOptions.CustomerSecretKey);
-            var tokenDescriptor = new SecurityTokenDescriptor
+            switch (accountType)
             {
-                Subject = new ClaimsIdentity(ClaimUtils.CreateHospitalClaims(hospitalId, username)),
-                Expires = DateTime.UtcNow.AddMinutes(tokenOptions.AccessTokenLifetime),
-                IssuedAt = DateTime.UtcNow,
-                NotBefore = DateTime.UtcNow,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var accessToken = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
-            var refreshToken = Guid.NewGuid().ToString();
-            return new TokenDto
-            {
-                AccessToken = accessToken,
-                RefreshToken = refreshToken
-            };
-        }
-
-        public static TokenDto CreateUserToken(long userId, string username, UserType userType, TokenOptions tokenOptions)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(tokenOptions.SecretKey);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(ClaimUtils.CreateUserClaims(userId, username, userType)),
-                Expires = DateTime.UtcNow.AddMinutes(tokenOptions.AccessTokenLifetime),
-                IssuedAt = DateTime.UtcNow,
-                NotBefore = DateTime.UtcNow,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var accessToken = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
-            var refreshToken = Guid.NewGuid().ToString();
-            return new TokenDto
-            {
-                AccessToken = accessToken,
-                RefreshToken = refreshToken
-            };
-        }
-        public static TokenDto CreateDoctorToken(long userId, string username, UserType userType, long hospitalId, TokenOptions tokenOptions)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(tokenOptions.SecretKey);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(ClaimUtils.CreateDoctorClaims(userId, username, userType, hospitalId)),
-                Expires = DateTime.UtcNow.AddMinutes(tokenOptions.AccessTokenLifetime),
-                IssuedAt = DateTime.UtcNow,
-                NotBefore = DateTime.UtcNow,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var accessToken = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
-            var refreshToken = Guid.NewGuid().ToString();
-            return new TokenDto
-            {
-                AccessToken = accessToken,
-                RefreshToken = refreshToken
-            };
+                case AccountType.Admin:
+                    return tokenOptions.AdminSecretKey;
+                case AccountType.User:
+                    return tokenOptions.UserSecretKey;
+                case AccountType.Doctor:
+                    return tokenOptions.DoctorSecretKey;
+                case AccountType.Hospital:
+                    return tokenOptions.HospitalSecretKey;
+                default:
+                    return "notfound";
+            }
         }
     }
 }

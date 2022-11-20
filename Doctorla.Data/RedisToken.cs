@@ -13,10 +13,9 @@ namespace Doctorla.Data
     public class RedisToken
     {
         public string TokenValue { get; set; }
-        public long UserId { get; set; }
-        public string Username { get; set; }
-        public ApiConsumerType ConsumerType { get; set; }
+        public long AccountId { get; set; }
+        public string Email { get; set; }
+        public AccountType AccountType { get; set; }
         public RedisTokenType TokenType { get; set; }
-        public bool CanSeeHiddenCompanies { get; set; }
     }
 }

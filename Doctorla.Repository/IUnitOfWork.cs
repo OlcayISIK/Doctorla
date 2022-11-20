@@ -10,7 +10,7 @@ namespace Doctorla.Repository
     public interface IUnitOfWork
     {
         DateTime Now { get; }
-        long HospitalId { get; }
+        //long HospitalId { get; }
         Task<int> Commit();
 
         IRedisTokenRepository RedisTokens { get; }

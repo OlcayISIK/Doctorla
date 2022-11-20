@@ -23,9 +23,10 @@ namespace Doctorla.Core.InternalDtos
 
     public class TokenOptions
     {
-        public string SecretKey { get; set; }
-        public string CustomerSecretKey { get; set; }
         public string AdminSecretKey { get; set; }
+        public string UserSecretKey { get; set; }
+        public string DoctorSecretKey { get; set; }
+        public string HospitalSecretKey { get; set; }
         public int AccessTokenLifetime { get; set; } // Minutes
         public int RefreshTokenLifetime { get; set; } // Minutes
     }

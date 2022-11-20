@@ -6,26 +6,11 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Core.Enums
 {
-    public enum ApiConsumerType
+    public enum AccountType
     {
-        /// <summary>
-        /// End users of the doctorla, consumers of the web and mobile API's
-        /// </summary>
-        Doctor = 0,
-
-        /// <summary>
-        /// Normal People
-        /// </summary>
+        Admin = 0,
         User = 1,
-
-        /// <summary>
-        /// Administrators of the system, Doctorla staff 
-        /// </summary>
-        Admin = 2,
-
-        /// <summary>
-        /// End users of the hospitals, consumers of the web API's
-        /// </summary>
+        Doctor = 2,
         Hospital = 3
     }
 }

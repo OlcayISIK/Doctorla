@@ -9,11 +9,8 @@ namespace Doctorla.Core.InternalDtos
 {
     public class DoctorlaClaims
     {
-        public long UserId { get; set; }
-        public string Username { get; set; }
-        public UserType UserType { get; set; }
-        public long HospitalId { get; set; }
-        public bool GuestUser { get; set; }
-        public bool CanSeeHiddenHospitals { get; set; }
+        public long Id { get; set; }
+        public string Email { get; set; }
+        public AccountType AccountType { get; set; }
     }
 }
