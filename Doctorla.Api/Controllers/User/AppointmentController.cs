@@ -38,9 +38,9 @@ namespace Doctorla.Api.Controllers.User
         /// Adds an appointment
         /// </summary>
         [HttpPost("approve")]
-        public async Task<Result<bool>> AddForUser(long appointmentId)
+        public async Task<Result<bool>> AddForUser(AppointmentDto appointmentDto)
         {
-            return await _operations.AddForUser(appointmentId);
+            return await _operations.AddForUser(appointmentDto);
         }
 
         /// <summary>

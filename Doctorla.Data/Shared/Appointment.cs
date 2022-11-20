@@ -12,6 +12,7 @@ namespace Doctorla.Data.Shared
         public DateTime AppointmentStartDate { get; set; }
         public DateTime AppointmentEndhDate { get; set; }
         public AppointmentStatus AppointmentStatus { get; set; }
+        public string MeetingLink { get; set; }
 
         public long UserId { get; set; }
         public User User { get; set; }
