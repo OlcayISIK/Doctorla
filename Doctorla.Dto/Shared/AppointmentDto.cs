@@ -1,5 +1,4 @@
 ﻿using Doctorla.Core.Enums;
-using Doctorla.Data.Doctors;
 using Doctorla.Data.Entities;
 using Doctorla.Data.Entities.SystemAppoinments;
 using Doctorla.Data.Entities.SystemUsers;

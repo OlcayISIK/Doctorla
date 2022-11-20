@@ -3,7 +3,7 @@ using Doctorla.Business.Helpers;
 using Doctorla.Core;
 using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
-using Doctorla.Data.Admins;
+using Doctorla.Data;
 using Doctorla.Data.EF;
 using Doctorla.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -72,32 +72,13 @@ namespace Doctorla.Api
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(Constants.AuthenticationSchemes.User, x =>
-            {
-                // this section is for authenticating signalR requests
-                x.Events = new JwtBearerEvents
-                {
-                    OnMessageReceived = context =>
-                    {
-                        var accessToken = context.Request.Query["access_token"];
-
-                        // If the request is for our hub...
-                        var path = context.HttpContext.Request.Path;
-                        if (!string.IsNullOrEmpty(accessToken) &&
-                            (path.StartsWithSegments("/refreshHub")))
-                        {
-                            // Read the token out of the query string
-                            context.Token = accessToken;
-                        }
-                        return Task.CompletedTask;
-                    }
-                };
-                // TODO look into this
+            {          
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = false;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.TokenOptions.SecretKey)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.TokenOptions.UserSecretKey)),
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ValidateLifetime = true,
@@ -105,13 +86,25 @@ namespace Doctorla.Api
                 };
             }).AddJwtBearer(Constants.AuthenticationSchemes.Doctor, x =>
             {
-                // TODO look into this
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = false;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.TokenOptions.CustomerSecretKey)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.TokenOptions.DoctorSecretKey)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+            }).AddJwtBearer(Constants.AuthenticationSchemes.Hospital, x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = false;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.TokenOptions.HospitalSecretKey)),
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ValidateLifetime = true,
@@ -119,7 +112,6 @@ namespace Doctorla.Api
                 };
             }).AddJwtBearer(Constants.AuthenticationSchemes.Admin, x =>
             {
-                // TODO look into this
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = false;
                 x.TokenValidationParameters = new TokenValidationParameters

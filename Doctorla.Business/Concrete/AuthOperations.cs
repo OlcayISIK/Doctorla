@@ -342,16 +342,16 @@ namespace Doctorla.Business.Concrete
         #region Hospital
         public async Task<Result<TokenDto>> HospitalAuthenticateViaPassword(LoginDto loginDto)
         {
-            if (!Validate.Username(loginDto.Username) || !Validate.Password(loginDto.Password))
-                return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
-            var hospital = new Hospital(); // await _unitOfWork.Hospitals.Where(x => x.Name == loginDto.Username).FirstOrDefaultAsync();
+            //if (!Validate.Username(loginDto.Username) || !Validate.Password(loginDto.Password))
+            //    return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
+            var hospital = await _unitOfWork.Hospitals.Where(x => x.Email == loginDto.Email).FirstOrDefaultAsync();
             if (hospital == default)
                 return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
-            var success = new CustomPasswordHasher().VerifyPassword(hospital.Password, loginDto.Password);
+            var success = new CustomPasswordHasher().VerifyPassword(hospital.HashedPassword, loginDto.Password);
             if (!success)
                 return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
-            var token = TokenCreator.CreateHospitalToken(hospital.Id, hospital.Name, _appSettings.TokenOptions);
-            await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = token.RefreshToken, UserId = hospital.Id, AccountType = AccountType.Hospital, TokenType = RedisTokenType.RefreshToken, Username = hospital.Name }, _appSettings.TokenOptions.RefreshTokenLifetime);
+            var token = TokenCreator.CreateToken(hospital.Id, hospital.Name, AccountType.Hospital, _appSettings.TokenOptions);
+            await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = token.RefreshToken, AccountId = hospital.Id, AccountType = AccountType.Hospital, TokenType = RedisTokenType.RefreshToken, Email = hospital.Email }, _appSettings.TokenOptions.RefreshTokenLifetime);
             return Result<TokenDto>.CreateSuccessResult(token);
         }
 
@@ -361,9 +361,9 @@ namespace Doctorla.Business.Concrete
             if (token == null || token.AccountType != AccountType.Hospital || token.TokenType != RedisTokenType.RefreshToken)
                 return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidRefreshToken);
             await _unitOfWork.RedisTokens.Remove(refreshToken);
-            var doctor = await _unitOfWork.Hospitals.Get(token.UserId).FirstOrDefaultAsync();
-            var newToken = new TokenDto(); // TokenCreator.CreateHospitalToken(doctor.Id, doctor.Name, _appSettings.TokenOptions);
-            await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = newToken.RefreshToken, UserId = token.UserId, AccountType = AccountType.Hospital, TokenType = RedisTokenType.RefreshToken, Username = doctor.Name }, _appSettings.TokenOptions.RefreshTokenLifetime);
+            var doctor = await _unitOfWork.Hospitals.Get(token.AccountId).FirstOrDefaultAsync();
+            var newToken = TokenCreator.CreateToken(doctor.Id, doctor.Email, AccountType.Hospital, _appSettings.TokenOptions);
+            await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = newToken.RefreshToken, AccountId = token.AccountId, AccountType = AccountType.Hospital, TokenType = RedisTokenType.RefreshToken, Email = doctor.Email }, _appSettings.TokenOptions.RefreshTokenLifetime);
             return Result<TokenDto>.CreateSuccessResult(newToken);
         }
 
@@ -386,7 +386,7 @@ namespace Doctorla.Business.Concrete
             var url = $"{ServiceLocator.AppSettings.ClientUrl}/userPasswordReset?token={token}";
             await _unitOfWork.RedisTokens.Set(new RedisToken
             {
-                UserId = hospital.Id,
+                AccountId = hospital.Id,
                 AccountType = AccountType.Hospital,
                 TokenType = RedisTokenType.PasswordResetToken,
                 TokenValue = token
@@ -406,8 +406,8 @@ namespace Doctorla.Business.Concrete
             var token = await _unitOfWork.RedisTokens.Get(dto.PasswordResetToken);
             if (token == null || token.AccountType != AccountType.Hospital || token.TokenType != RedisTokenType.PasswordResetToken)
                 return Result<bool>.CreateErrorResult(ErrorCode.InvalidPasswordResetToken);
-            var doctor = await _unitOfWork.Hospitals.GetAsTracking(token.UserId).FirstOrDefaultAsync();
-            //doctor.Password = new CustomPasswordHasher().HashPassword(dto.NewPassword);
+            var doctor = await _unitOfWork.Hospitals.GetAsTracking(token.AccountId).FirstOrDefaultAsync();
+            doctor.HashedPassword = new CustomPasswordHasher().HashPassword(dto.NewPassword);
             await _unitOfWork.Commit();
             await _unitOfWork.RedisTokens.Remove(dto.PasswordResetToken);
             return Result<bool>.CreateSuccessResult(true);
@@ -417,7 +417,7 @@ namespace Doctorla.Business.Concrete
         {
             if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
                 return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
-            //var existingMail = await _unitOfWork.Hospitals.Where(x => x.Email == dto.Email).FirstOrDefaultAsync();
+            var existingMail = await _unitOfWork.Hospitals.Where(x => x.Email == dto.Email).FirstOrDefaultAsync();
             if (existingMail != null)
                 return Result<long>.CreateErrorResult(ErrorCode.ObjectAlreadyExists);
             var now = DateTime.UtcNow;
@@ -439,7 +439,7 @@ namespace Doctorla.Business.Concrete
             // TODO fix what is wrong with user approving, then change this
             // save approval token
             var approvalToken = Generate.ApprovalToken();
-            await _unitOfWork.RedisTokens.Set(new RedisToken { AccountType = AccountType.Hospital, TokenType = RedisTokenType.UserApprovalToken, UserId = entity.Id, TokenValue = approvalToken }, 2 * 60);
+            await _unitOfWork.RedisTokens.Set(new RedisToken { AccountType = AccountType.Hospital, TokenType = RedisTokenType.UserApprovalToken, AccountId = entity.Id, TokenValue = approvalToken }, 2 * 60);
 
             // TODO fix what is wrong with user approving, then change this
             // send confirmation mail
@@ -458,7 +458,7 @@ namespace Doctorla.Business.Concrete
             var token = await _unitOfWork.RedisTokens.Get(approvalToken);
             if (token == null || token.TokenType != RedisTokenType.UserApprovalToken || token.AccountType != AccountType.Hospital)
                 return Result<bool>.CreateErrorResult(ErrorCode.ObjectNotFound);
-            var hospital = await _unitOfWork.Hospitals.GetAsTracking(token.UserId).FirstOrDefaultAsync();
+            var hospital = await _unitOfWork.Hospitals.GetAsTracking(token.AccountId).FirstOrDefaultAsync();
             //hospital.Status = UserStatus.Approved;
             await _unitOfWork.Commit();
             await _unitOfWork.RedisTokens.Remove(approvalToken);
@@ -467,7 +467,7 @@ namespace Doctorla.Business.Concrete
         public async Task<Result<bool>> DeleteHospitalAccount()
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
-            var userId = claims.UserId;
+            var userId = claims.Id;
             //_unitOfWork.Hospitals.RemoveAccount(userId);
             await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);

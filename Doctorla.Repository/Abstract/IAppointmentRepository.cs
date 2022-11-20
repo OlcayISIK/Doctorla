@@ -1,5 +1,4 @@
-﻿using Doctorla.Data.Hospitals;
-using Doctorla.Data.Shared;
+﻿using Doctorla.Data.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
