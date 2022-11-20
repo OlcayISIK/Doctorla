@@ -12,7 +12,6 @@ namespace Doctorla.Core.Enums
         InvalidRefreshToken = 102,
         InvalidPasswordResetToken = 103,
         InvalidAction = 104,
-        CannotDeleteAccountWithReservation = 105,
 
         PermissionDenied = 206,
 

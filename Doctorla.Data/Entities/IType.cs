@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Entities
 {
-    public class Hospital : Entity
+    public interface IType
     {
         public string Name { get; set; }
+        public string DefaultName { get; set; }
     }
 }

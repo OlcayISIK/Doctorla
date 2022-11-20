@@ -1,4 +1,5 @@
-﻿using Doctorla.Data.Entities;
+﻿using Doctorla.Data.Admins;
+using Doctorla.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

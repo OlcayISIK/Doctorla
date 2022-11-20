@@ -11,20 +11,9 @@ namespace Doctorla.Data
 {
     public class Entity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        [Required]
-        [DefaultValue(true)]
-        public bool IsActive { get; set; }
-        [Required]
-        [DefaultValue(false)]
+        public long Id { get; set; }
         public bool IsDeleted { get; set; }
-        [Required]
-        public DateTime IDate { get; set; }
-        [Required]
-        public int IUser { get; set; }
-        public DateTime? UUDate { get; set; }
-        public int? UUser { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime LastModifiedAt { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace Doctorla.Repository
         {
             return await _context.SaveChangesAsync();
         }
-        public long HospitalId => _context.HospitalId;
+        //public long HospitalId => _context.HospitalId;
 
         public DateTime Now => _context.Now;
 

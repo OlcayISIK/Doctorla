@@ -3,6 +3,7 @@ using Doctorla.Business.Helpers;
 using Doctorla.Core;
 using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
+using Doctorla.Data.Admins;
 using Doctorla.Data.EF;
 using Doctorla.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -251,7 +252,7 @@ namespace Doctorla.Api
                 context.Admins.Add(new Admin
                 {
                     Username = "admin",
-                    HashedPassword = new CustomPasswordHasher().HashPassword("Hmpetleva1337."),
+                    HashedPassword = new CustomPasswordHasher().HashPassword("testpass"),
                     Status = UserStatus.Approved
                 });
                 context.SaveChanges();

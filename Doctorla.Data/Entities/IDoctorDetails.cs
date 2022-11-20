@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Data
+namespace Doctorla.Data.Entities
 {
     public interface IDoctorDetails : IType
     {

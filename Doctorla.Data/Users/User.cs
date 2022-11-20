@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Data.Entities.Doctor
+namespace Doctorla.Data.Users
 {
-    public class Doc : Entity
+    public class User : Entity
     {
-        public string Name { get; set; }
     }
 }

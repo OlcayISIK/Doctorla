@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Doctorla.Data
+namespace Doctorla.Data.Entities
 {
     public class PackagePaymentResult : PaymentResult
     {

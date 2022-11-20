@@ -11,12 +11,12 @@ namespace Doctorla.Repository
     public interface IRepository<TEntity> where TEntity : Entity
     {
         IQueryable<TEntity> GetAll();
-        IQueryable<TEntity> Get(int id);
+        IQueryable<TEntity> Get(long id);
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
         TEntity Add(TEntity entity);
         IQueryable<TEntity> GetAsTracking(long id);
-        void Remove(int id);
-        void HardRemove(int id);
-        void HardRemoveRange(IEnumerable<int> ids);
+        void Remove(long id);
+        void HardRemove(long id);
+        void HardRemoveRange(IEnumerable<long> ids);
     }
 }

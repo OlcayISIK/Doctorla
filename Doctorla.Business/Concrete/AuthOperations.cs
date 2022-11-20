@@ -6,8 +6,11 @@ using Doctorla.Core.Communication;
 using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
+using Doctorla.Data;
+using Doctorla.Data.Doctors;
 using Doctorla.Data.Entities;
 using Doctorla.Data.Entities.SystemUsers;
+using Doctorla.Data.Hospitals;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
 using Doctorla.Repository;
@@ -283,7 +286,7 @@ namespace Doctorla.Business.Concrete
             var now = DateTime.UtcNow;
 
             // create user
-            var entity = _unitOfWork.Doctors.Add(new User
+            var entity = _unitOfWork.Doctors.Add(new Doctor
             {
                 //CreatedAt = now,
                 //Email = dto.Email,
@@ -343,7 +346,7 @@ namespace Doctorla.Business.Concrete
         {
             if (!Validate.Username(loginDto.Username) || !Validate.Password(loginDto.Password))
                 return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidUsernameOrPassword);
-            var hospital = await _unitOfWork.Hospitals.Where(x => x.Name == loginDto.Username).FirstOrDefaultAsync();
+            var hospital = new Hospital(); // await _unitOfWork.Hospitals.Where(x => x.Name == loginDto.Username).FirstOrDefaultAsync();
             if (hospital == default)
                 return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidUsernameOrPassword);
             var success = new CustomPasswordHasher().VerifyPassword(hospital.Password, loginDto.Password);
@@ -361,7 +364,7 @@ namespace Doctorla.Business.Concrete
                 return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidRefreshToken);
             await _unitOfWork.RedisTokens.Remove(refreshToken);
             var doctor = await _unitOfWork.Hospitals.Get(token.UserId).FirstOrDefaultAsync();
-            var newToken = TokenCreator.CreateHospitalToken(doctor.Id, doctor.Name, _appSettings.TokenOptions);
+            var newToken = new TokenDto(); // TokenCreator.CreateHospitalToken(doctor.Id, doctor.Name, _appSettings.TokenOptions);
             await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = newToken.RefreshToken, UserId = token.UserId, ConsumerType = ApiConsumerType.Hospital, TokenType = RedisTokenType.RefreshToken, Username = doctor.Name }, _appSettings.TokenOptions.RefreshTokenLifetime);
             return Result<TokenDto>.CreateSuccessResult(newToken);
         }
@@ -406,7 +409,7 @@ namespace Doctorla.Business.Concrete
             if (token == null || token.ConsumerType != ApiConsumerType.Hospital || token.TokenType != RedisTokenType.PasswordResetToken)
                 return Result<bool>.CreateErrorResult(ErrorCode.InvalidPasswordResetToken);
             var doctor = await _unitOfWork.Hospitals.GetAsTracking(token.UserId).FirstOrDefaultAsync();
-            doctor.Password = new CustomPasswordHasher().HashPassword(dto.NewPassword);
+            //doctor.Password = new CustomPasswordHasher().HashPassword(dto.NewPassword);
             await _unitOfWork.Commit();
             await _unitOfWork.RedisTokens.Remove(dto.PasswordResetToken);
             return Result<bool>.CreateSuccessResult(true);
@@ -416,13 +419,13 @@ namespace Doctorla.Business.Concrete
         {
             if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
                 return Result<long>.CreateErrorResult(ErrorCode.InvalidUsernameOrPassword);
-            var existingMail = await _unitOfWork.Hospitals.Where(x => x.Email == dto.Email).FirstOrDefaultAsync();
+            //var existingMail = await _unitOfWork.Hospitals.Where(x => x.Email == dto.Email).FirstOrDefaultAsync();
             if (existingMail != null)
                 return Result<long>.CreateErrorResult(ErrorCode.ObjectAlreadyExists);
             var now = DateTime.UtcNow;
 
             // create user
-            var entity = _unitOfWork.Hospitals.Add(new User
+            var entity = _unitOfWork.Hospitals.Add(new Hospital
             {
                 //CreatedAt = now,
                 //Email = dto.Email,

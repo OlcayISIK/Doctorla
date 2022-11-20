@@ -23,4 +23,9 @@
     <ProjectReference Include="..\Doctorla.Business\Doctorla.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Hospital\" />
+    <Folder Include="Controllers\Doctor\" />
+  </ItemGroup>
+
 </Project>
