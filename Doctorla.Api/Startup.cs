@@ -245,7 +245,7 @@ namespace Doctorla.Api
                 {
                     Email = "admin",
                     HashedPassword = new CustomPasswordHasher().HashPassword("testpass"),
-                    Status = UserStatus.Approved
+                    Status = AccountStatus.Approved
                 });
                 context.SaveChanges();
             }

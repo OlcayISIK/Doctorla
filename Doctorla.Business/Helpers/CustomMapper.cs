@@ -58,7 +58,7 @@ namespace Doctorla.Business.Helpers
         /// <param name="source">Source (DTO) object to be mapped</param>
         /// <param name="destination">Destination (Entity) object, which has other translations already filled.</param>
         /// <param name="language">The language currently being mapped.</param>
-        public void Map<TSource, TDestination>(TSource source, TDestination destination, Language language, DateTime now) where TDestination : Entity
+        public void Map<TSource, TDestination>(TSource source, TDestination destination, Language language = Language.Turkish, DateTime now = DateTime.UtcNow) where TDestination : Entity
         {
             _mapper.Map(source, destination, opts => opts.Items[nameof(Language)] = language);
             destination.LastModifiedAt = now;

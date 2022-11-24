@@ -1,5 +1,6 @@
 ﻿using Doctorla.Data.Entities.SystemPackages;
 using Doctorla.Data.Entities.SystemUsers;
+using Doctorla.Data.Members;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

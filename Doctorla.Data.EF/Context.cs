@@ -5,16 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Doctorla.Data.Entities;
-using Doctorla.Data.Entities.DailyChecking;
-using Doctorla.Data.Entities.Doctor;
-using Doctorla.Data.Entities.Region;
-using Doctorla.Data.Entities.SystemPackages;
-using Doctorla.Data.Entities.SystemUsers;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Doctorla.Data.Entities.SystemAppoinments;
+using Doctorla.Data.Members;
+using Doctorla.Data.Shared;
 
 namespace Doctorla.Data.EF
 {
@@ -76,6 +68,9 @@ namespace Doctorla.Data.EF
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
+
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Specialty> Specialties { get; set; }
         #endregion
 
         public Context(string connectionString)

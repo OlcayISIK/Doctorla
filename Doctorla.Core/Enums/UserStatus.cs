@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Core.Enums
 {
-    public enum UserStatus
+    public enum AccountStatus
     {
         Created = 0,
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Doctorla.Data.Entities.SystemUsers;
+using Doctorla.Data.Members;
 
 namespace Doctorla.Data.Entities.SystemPackages
 {

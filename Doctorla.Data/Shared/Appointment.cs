@@ -1,4 +1,5 @@
 ﻿using Doctorla.Core.Enums;
+using Doctorla.Data.Members;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Text.Json.Serialization;
 using Doctorla.Data.Entities.SystemUsers;
+using Doctorla.Data.Members;
 // using Base;
 namespace Doctorla.Data.Entities.SystemAppoinments
 {

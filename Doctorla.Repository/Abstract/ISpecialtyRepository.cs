@@ -1,4 +1,4 @@
-﻿using Doctorla.Data.Members;
+﻿using Doctorla.Data.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Repository.Abstract
 {
-    public interface IUserRepository : IRepository<User> 
-    { 
+    public interface ISpecialtyRepository : IRepository<Specialty>
+    {
     }
 }

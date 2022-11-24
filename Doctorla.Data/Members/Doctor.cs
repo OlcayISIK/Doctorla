@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Data
+namespace Doctorla.Data.Members
 {
     public class Doctor : Member
     {
