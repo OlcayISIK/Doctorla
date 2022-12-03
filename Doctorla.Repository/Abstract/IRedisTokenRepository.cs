@@ -9,8 +9,8 @@ namespace Doctorla.Repository.Abstract
 {
     public interface IRedisTokenRepository
     {
-        Task Set(RedisToken token, int expireInMinutes);
         Task<RedisToken> Get(string key);
+        Task Set(RedisToken token, int expireInMinutes);
         Task Remove(string key);
     }
 }

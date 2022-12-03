@@ -6,6 +6,7 @@ using Doctorla.Core.InternalDtos;
 using Doctorla.Data;
 using Doctorla.Data.EF;
 using Doctorla.Data.Entities;
+using Doctorla.Data.Members;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -134,7 +135,7 @@ namespace Doctorla.Api
                 x.SwaggerDoc(Constants.AuthenticationSchemes.Admin, new OpenApiInfo { Title = "Doctorla Admin Api", Version = "v1" });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                x.IncludeXmlComments(xmlPath);
+                //x.IncludeXmlComments(xmlPath);
                 x.DocumentFilter<SwaggerAddEnumDescriptions>();
 
             });
@@ -245,7 +246,7 @@ namespace Doctorla.Api
                 {
                     Email = "admin",
                     HashedPassword = new CustomPasswordHasher().HashPassword("testpass"),
-                    Status = AccountStatus.Approved
+                    AccountStatus = AccountStatus.Approved
                 });
                 context.SaveChanges();
             }

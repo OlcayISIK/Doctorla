@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Doctorla.Data.Entities.SystemUsers;
 using Doctorla.Data.Members;
 
 namespace Doctorla.Data.Entities

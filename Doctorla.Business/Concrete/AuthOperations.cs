@@ -7,6 +7,7 @@ using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
 using Doctorla.Data;
+using Doctorla.Data.Members;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
 using Doctorla.Repository;

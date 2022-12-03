@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 using Doctorla.Data.Entities.Region;
-using Doctorla.Data.Entities.SystemUsers;
 using Doctorla.Data.Members;
 
 namespace Doctorla.Data.Entities
