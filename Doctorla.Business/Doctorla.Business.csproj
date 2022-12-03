@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Doctorla.Core\Doctorla.Core.csproj" />
     <ProjectReference Include="..\Doctorla.Repository\Doctorla.Repository.csproj" />
   </ItemGroup>
 
