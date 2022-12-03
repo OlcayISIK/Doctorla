@@ -19,6 +19,7 @@ namespace Doctorla.Core.InternalDtos
         public string DevelopmentApiUrl { get; set; }
         public string UatApiUrl { get; set; }
         public string GoogleAPIKey { get; set; }
+        public ZoomApi ZoomApi { get; set; }
     }
 
     public class TokenOptions
@@ -35,6 +36,14 @@ namespace Doctorla.Core.InternalDtos
         public string ApiKey { get; set; }
         public string SecretKey { get; set; }
         public string Url { get; set; }
+    }
+
+    public class ZoomApi
+    {
+        public string ApiKey { get; set; }
+        public string ApiSecret { get; set; }
+        public string Topic { get; set; }
+        public string Email { get; set; }
     }
 }
 

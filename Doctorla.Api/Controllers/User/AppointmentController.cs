@@ -32,7 +32,6 @@ namespace Doctorla.Api.Controllers.User
         [HttpGet("getall")]
         public async Task<Result<IEnumerable<AppointmentDto>>> GetAll()
         {
-            var a = MeetingCreator.CreateMeeting();
             return await _operations.GetAllForUser();
         }
 

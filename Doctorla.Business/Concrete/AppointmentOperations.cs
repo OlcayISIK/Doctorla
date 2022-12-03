@@ -1,5 +1,6 @@
 ﻿using Doctorla.Business.Abstract;
 using Doctorla.Business.Helpers;
+using Doctorla.Core.Communication;
 using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
@@ -22,12 +23,14 @@ namespace Doctorla.Business.Concrete
         private readonly IUnitOfWork _unitOfWork;
         private readonly CustomMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly AppSettings _appSettings;
 
-        public AppointmentOperations(IUnitOfWork unitOfWork, CustomMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public AppointmentOperations(IUnitOfWork unitOfWork, CustomMapper mapper, IHttpContextAccessor httpContextAccessor, AppSettings appSettings)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
+            _appSettings = appSettings;
         }
 
         #region User
@@ -76,6 +79,7 @@ namespace Doctorla.Business.Concrete
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.DoctorId == claims.Id).FirstOrDefaultAsync();
             appointment.AppointmentStatus = AppointmentStatus.Approved;
+            appointment.MeetingLink = MeetingCreator.CreateMeeting(_appSettings.ZoomApi);
             await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);
         }
