@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Business.Helpers
 {
-    internal class IyzicoHelper
+    public static class IyzicoHelper
     {
     }
 }
