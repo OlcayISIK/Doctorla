@@ -50,6 +50,7 @@ namespace Doctorla.Business.Helpers
 
             CreateMap<Appointment, AppointmentDto>().ReverseMap();
             CreateMap<Specialty, SpecialtyDto>().ReverseMap();
+            CreateMap<BlogPost, BlogPostDto>().ReverseMap();
     }
 
     private static string MapLanguageBoundString(string source, MultiString destination, Language destinationLanguage, Language sourceLanguage)

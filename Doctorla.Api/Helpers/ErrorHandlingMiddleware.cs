@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System;
 using Doctorla.Core.Enums;
 using Doctorla.Core.Exceptions;
+using Doctorla.Dto;
 
 namespace Doctorla.Api.Helpers
 {
@@ -66,11 +67,11 @@ namespace Doctorla.Api.Helpers
             //await ErrorLogger.Log(sb.ToString(), exception.Message, exception.StackTrace, exception.InnerException?.Message,
             //    exception.InnerException?.StackTrace, context.Request.Path);
 
-            //var result = JsonConvert.SerializeObject(Result<object>.CreateErrorResult(errorCode));
-            //context.Response.ContentType = "application/json";
-            //context.Response.StatusCode = (int)HttpStatusCode.OK;
-            //context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            //await context.Response.WriteAsync(result);
+            var result = JsonConvert.SerializeObject(Result<object>.CreateErrorResult(errorCode));
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.OK;
+            context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            await context.Response.WriteAsync(result);
         }
     }
 }

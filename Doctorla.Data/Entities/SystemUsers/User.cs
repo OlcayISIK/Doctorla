@@ -58,7 +58,7 @@ namespace Doctorla.Data.Entities.SystemUsers
         [JsonIgnore]
         public DateTime? RefreshTokenEndTimeMobile { get; set; }
 
-        public UserDetail UserDetail { get; set; }
+        //public UserDetail UserDetail { get; set; }
 
         public DoctorDetail DoctorDetail { get; set; }
 

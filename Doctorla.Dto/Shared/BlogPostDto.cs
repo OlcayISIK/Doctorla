@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Doctorla.Data.Entities
+namespace Doctorla.Data.Shared
 {
-    public class Blog : Entity
+    public class BlogPostDto
     {
+        public long Id { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
