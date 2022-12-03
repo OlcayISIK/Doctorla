@@ -6,9 +6,9 @@ using System;
 using System.Net;
 using System.Text;
 
-namespace Doctorla.Core.Communication
+namespace Doctorla.Business.Helpers
 {
-    public static class MeetingCreator
+    public static class ZoomHelper
     {
         public static string CreateMeeting(ZoomApi zoomApi)
         {
@@ -30,7 +30,7 @@ namespace Doctorla.Core.Communication
                 RequestFormat = DataFormat.Json
             };
             request.AddJsonBody(new { topic = zoomApi.Topic, type = "2" });
-            request.AddHeader("authorization", String.Format($"Bearer {tokenString}"));
+            request.AddHeader("authorization", string.Format($"Bearer {tokenString}"));
 
             var client = new RestClient($"https://api.zoom.us/v2/users/{zoomApi.Email}/meetings");
             var restResponse = client.Execute(request);

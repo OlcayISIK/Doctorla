@@ -79,7 +79,7 @@ namespace Doctorla.Business.Concrete
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.DoctorId == claims.Id).FirstOrDefaultAsync();
             appointment.AppointmentStatus = AppointmentStatus.Approved;
-            appointment.MeetingLink = MeetingCreator.CreateMeeting(_appSettings.ZoomApi);
+            //appointment.MeetingLink = MeetingCreator.CreateMeeting(_appSettings.ZoomApi);
             await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);
         }
