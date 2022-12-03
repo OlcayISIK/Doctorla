@@ -17,13 +17,13 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Business.Concrete
 {
-    public class AppoinmentOperations : IAppointmentOperations
+    public class AppointmentOperations : IAppointmentOperations
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly CustomMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AppoinmentOperations(IUnitOfWork unitOfWork, CustomMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public AppointmentOperations(IUnitOfWork unitOfWork, CustomMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

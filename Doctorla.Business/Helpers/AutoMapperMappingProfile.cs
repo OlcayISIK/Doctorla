@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Doctorla.Core.Enums;
 using Doctorla.Data;
+using Doctorla.Data.Shared;
 using Doctorla.Dto;
+using Doctorla.Dto.Shared;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,6 +47,9 @@ namespace Doctorla.Business.Helpers
                 Enum.TryParse(context.Options.Items["Language"].ToString(), out language);
                 return MapLanguageBoundString(src, dst, Language.Spanish, language);
             }));
+
+            CreateMap<Appointment, AppointmentDto>().ReverseMap();
+            CreateMap<Specialty, SpecialtyDto>().ReverseMap();
     }
 
     private static string MapLanguageBoundString(string source, MultiString destination, Language destinationLanguage, Language sourceLanguage)

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Doctorla.Core.Communication;
 
 namespace Doctorla.Api.Controllers.User
 {
@@ -31,13 +32,14 @@ namespace Doctorla.Api.Controllers.User
         [HttpGet("getall")]
         public async Task<Result<IEnumerable<AppointmentDto>>> GetAll()
         {
+            var a = MeetingCreator.CreateMeeting();
             return await _operations.GetAllForUser();
         }
 
         /// <summary>
         /// Adds an appointment
         /// </summary>
-        [HttpPost("approve")]
+        [HttpPost("add")]
         public async Task<Result<bool>> AddForUser(AppointmentDto appointmentDto)
         {
             return await _operations.AddForUser(appointmentDto);
