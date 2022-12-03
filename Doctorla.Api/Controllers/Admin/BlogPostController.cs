@@ -1,6 +1,5 @@
 ﻿using Doctorla.Business.Abstract;
 using Doctorla.Core;
-using Doctorla.Data.Shared;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
 using Doctorla.Dto.Shared;

@@ -8,6 +8,7 @@ using System;
 using Doctorla.Core.Enums;
 using Doctorla.Core.Exceptions;
 using Doctorla.Dto;
+using Doctorla.Business.Helpers;
 
 namespace Doctorla.Api.Helpers
 {
@@ -64,8 +65,8 @@ namespace Doctorla.Api.Helpers
             var body = await stream.ReadToEndAsync();
             sb.AppendLine("Body");
             sb.AppendLine(body);
-            //await ErrorLogger.Log(sb.ToString(), exception.Message, exception.StackTrace, exception.InnerException?.Message,
-            //    exception.InnerException?.StackTrace, context.Request.Path);
+            await ErrorLogger.Log(sb.ToString(), exception.Message, exception.StackTrace, exception.InnerException?.Message,
+                exception.InnerException?.StackTrace, context.Request.Path);
 
             var result = JsonConvert.SerializeObject(Result<object>.CreateErrorResult(errorCode));
             context.Response.ContentType = "application/json";

@@ -72,6 +72,8 @@ namespace Doctorla.Data.EF
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<BlogPost> BlogPosts { get; set; }
+
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
         #endregion
 
         public Context(string connectionString)

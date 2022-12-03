@@ -1,5 +1,4 @@
 ﻿using Doctorla.Data.Entities.SystemAppoinments;
-using Doctorla.Data.Shared;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
 using Doctorla.Dto.Shared;
