@@ -11,8 +11,12 @@ namespace Doctorla.Data.Shared
     public class Appointment : Entity
     {
         public DateTime AppointmentStartDate { get; set; }
-        public DateTime AppointmentEndhDate { get; set; }
+        public DateTime AppointmentEndDate { get; set; }
         public AppointmentStatus AppointmentStatus { get; set; }
+        public string SessionKey { get; set; }
+        public long Price { get; set; }
+        public string PatientNote { get; set; }
+        public string DoctorNote { get; set; }
         public string MeetingLink { get; set; }
 
         public long UserId { get; set; }

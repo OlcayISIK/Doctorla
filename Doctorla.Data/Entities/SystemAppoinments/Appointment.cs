@@ -9,8 +9,6 @@ namespace Doctorla.Data.Entities.SystemAppoinments
 {
     public class Appointment : Entity
     {
-        public int UserId { get; set; }
-        public int DoctorId { get; set; }
         public string DoctorName { get; set; }
         public string SessionKey { get; set; }
         public string SessionCode { get; set; }

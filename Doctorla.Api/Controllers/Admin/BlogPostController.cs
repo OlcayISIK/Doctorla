@@ -2,7 +2,7 @@
 using Doctorla.Core;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
-using Doctorla.Dto.Shared;
+using Doctorla.Dto.Shared.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace Doctorla.Api.Controllers.Admin
         }
 
         [HttpGet("getall")]
-        public async Task<Result<IEnumerable<BlogPostDto>>> GetAll()
+        public async Task<Result<IEnumerable<BlogPostPreviewDto>>> GetAll()
         {
             return await _operations.GetAll();
         }

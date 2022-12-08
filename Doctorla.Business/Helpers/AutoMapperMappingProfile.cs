@@ -2,8 +2,10 @@
 using Doctorla.Core.Enums;
 using Doctorla.Data;
 using Doctorla.Data.Shared;
+using Doctorla.Data.Shared.Blog;
 using Doctorla.Dto;
 using Doctorla.Dto.Shared;
+using Doctorla.Dto.Shared.Blog;
 using System;
 using System.Collections;
 using System.Collections.Generic;

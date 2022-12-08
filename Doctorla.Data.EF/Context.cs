@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Doctorla.Data.Members;
 using Doctorla.Data.Shared;
+using Doctorla.Data.Shared.Blog;
 
 namespace Doctorla.Data.EF
 {
