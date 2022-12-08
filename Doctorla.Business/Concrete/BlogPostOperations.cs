@@ -32,11 +32,23 @@ namespace Doctorla.Business.Concrete
         }
 
         #region Shared
-        public async Task<Result<IEnumerable<BlogPostDto>>> GetAll()
+        public async Task<Result<IEnumerable<BlogPostPreviewDto>>> GetAll()
         {
             var blogPosts = _unitOfWork.BlogPosts.GetAll();
-            var dtos = await _mapper.ProjectTo<BlogPostDto>(blogPosts).ToListAsync();
-            return Result<IEnumerable<BlogPostDto>>.CreateSuccessResult(dtos);
+            var dtos = await _mapper.ProjectTo<BlogPostPreviewDto>(blogPosts).ToListAsync();
+            return Result<IEnumerable<BlogPostPreviewDto>>.CreateSuccessResult(dtos);
+        }
+
+        public async Task<Result<BlogPostDto>> GetWithDetails(long blogpostId)
+        {
+            var blogPost = _unitOfWork.BlogPosts.Get(blogpostId);
+            var dto = await _mapper.ProjectTo<BlogPostDto>(blogPost).FirstOrDefaultAsync();
+            return Result<BlogPostDto>.CreateSuccessResult(dto);
+        }
+
+        public async Task<Result<IEnumerable<BlogPostDto>>> Filter(BlogPostFilterDto blogPostFilterDto)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

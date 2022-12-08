@@ -1,4 +1,5 @@
-﻿using Doctorla.Data.EF;
+﻿using Doctorla.Core.Enums;
+using Doctorla.Data.EF;
 using Doctorla.Data.Entities;
 using Doctorla.Data.Members;
 using Doctorla.Data.Shared;
@@ -15,6 +16,11 @@ namespace Doctorla.Repository.Concrete
     {
         public AppointmentRepository(Context context) : base(context)
         {
+        }
+
+        public IQueryable<Appointment> GetAllAvailableAppointments()
+        {
+            return Context.Appointments.Where(x => !x.IsDeleted && (x.AppointmentStatus == AppointmentStatus.Active || x.AppointmentStatus == AppointmentStatus.Requested));
         }
     }
 }

@@ -8,5 +8,6 @@ namespace Doctorla.Dto.Members
 {
     public class DoctorDto
     {
+        public long Id { get; set; }
     }
 }

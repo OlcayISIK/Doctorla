@@ -11,5 +11,6 @@ namespace Doctorla.Repository.Abstract
 {
     public interface IDoctorRepository : IRepository<Doctor>
     {
+        IQueryable<Doctor> GetAllAvailableInGivenDate(DateTime date);
     }
 }

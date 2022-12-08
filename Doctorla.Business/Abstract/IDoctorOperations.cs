@@ -16,6 +16,7 @@ namespace Doctorla.Business.Abstract
         #region Shared
         Task<Result<IEnumerable<DoctorPreviewDto>>> GetAll();
         Task<Result<DoctorDto>> GetWithDetails(long doctodId);
+        Task<Result<IEnumerable<DoctorPreviewDto>>> GetAllAvailableInGivenDate(DateTime date);
         #endregion
 
         #region Admin
