@@ -6,6 +6,7 @@ using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
 using Doctorla.Data.Shared;
 using Doctorla.Dto;
+using Doctorla.Dto.Payment;
 using Doctorla.Dto.Shared;
 using Doctorla.Repository;
 using Microsoft.AspNetCore.Http;
@@ -34,14 +35,18 @@ namespace Doctorla.Business.Concrete
         }
 
         #region User
-        public async Task<Result<bool>> PayForAppointment()
+        public async Task<Result<bool>> PayForAppointment(PaymentDto paymentDto)
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
 
             var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.UserId == claims.Id);
             var dtos = await _mapper.ProjectTo<AppointmentDto>(appointments).ToListAsync();
 
-            var paymentResult = IyzicoHelper.MakePayment(_appSettings.Iyzico);
+
+            paymentDto.IpAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            var user = await _unitOfWork.Users.Get(claims.Id).FirstOrDefaultAsync();
+            var appointment = await _unitOfWork.Appointments.Get(paymentDto.AppointmentId).Where(x => x.UserId == claims.Id).FirstOrDefaultAsync();
+            var paymentResult = IyzicoHelper.MakePayment(_appSettings.Iyzico, paymentDto, user, appointment);
 
             //Todo - add specialized enums for error status
             return paymentResult ? Result<bool>.CreateSuccessResult(true) : Result<bool>.CreateErrorResult(ErrorCode.InternalServerError);

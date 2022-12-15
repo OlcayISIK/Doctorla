@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Doctorla.Data\Doctorla.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Payment\" />
-  </ItemGroup>
-
 </Project>

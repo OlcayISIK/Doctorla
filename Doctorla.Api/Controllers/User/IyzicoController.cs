@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Doctorla.Core.Communication;
 using Doctorla.Business.Helpers;
+using Doctorla.Dto.Payment;
 
 namespace Doctorla.Api.Controllers.User
 {
@@ -30,9 +31,9 @@ namespace Doctorla.Api.Controllers.User
         }
         
         [HttpPost("payforappointment")]
-        public async Task<Result<bool>> PayForAppointment()
+        public async Task<Result<bool>> PayForAppointment(PaymentDto paymentDto)
         {
-            return await _operations.PayForAppointment();
+            return await _operations.PayForAppointment(paymentDto);
         }
     }
 }

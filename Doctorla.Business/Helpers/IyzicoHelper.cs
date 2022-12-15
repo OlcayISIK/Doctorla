@@ -1,6 +1,8 @@
 ﻿using Doctorla.Core.InternalDtos;
 using Doctorla.Data.Members;
+using Doctorla.Data.Shared;
 using Doctorla.Dto;
+using Doctorla.Dto.Payment;
 using Iyzipay;
 using Iyzipay.Model;
 using Iyzipay.Request;
@@ -14,9 +16,12 @@ namespace Doctorla.Business.Helpers
 {
     public static class IyzicoHelper
     {
-        public static bool MakePayment(IyzicoAPI iyzicoApi)
+        private const string firstCategory = "Health"; 
+        private const string secondCategory = "Online Health Service\""; 
+
+        public static bool MakePayment(IyzicoAPI iyzicoApi, PaymentDto paymentDto, User user, Appointment appointment)
         {
-            var result = SendPaymentRequest(iyzicoApi);
+            var result = SendPaymentRequest(iyzicoApi, paymentDto, user, appointment);
 
             //status == "failure" if failed
             if (result.Status == "success")
@@ -25,8 +30,9 @@ namespace Doctorla.Business.Helpers
             //log error
             return false;
         }
-
-        private static Payment SendPaymentRequest(IyzicoAPI iyzicoApi, User user)
+        
+        //Todo - given ids are copied from old application, check if it needs to be normalized
+        private static Payment SendPaymentRequest(IyzicoAPI iyzicoApi, PaymentDto paymentDto, User user, Appointment appointment)
         {
             var options = new Options();
             options.ApiKey = iyzicoApi.ApiKey;
@@ -35,21 +41,22 @@ namespace Doctorla.Business.Helpers
 
             var request = new CreatePaymentRequest();
             request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.Price = "1";
-            request.PaidPrice = "1.2";
+            request.ConversationId = appointment.Id.ToString() + ":" + user.Id.ToString();
+            request.Price = appointment.Price.ToString();
+            //For commision
+            request.PaidPrice = appointment.Price.ToString();
             request.Currency = Currency.TRY.ToString();
-            request.Installment = 1;
-            request.BasketId = "B67832";
+            //request.Installment = 1;
+            request.BasketId = appointment.SessionKey;
             request.PaymentChannel = PaymentChannel.WEB.ToString();
             request.PaymentGroup = PaymentGroup.PRODUCT.ToString();
 
             var paymentCard = new PaymentCard();
-            paymentCard.CardHolderName = "John Doe";
-            paymentCard.CardNumber = "5528790000000008";
-            paymentCard.ExpireMonth = "12";
-            paymentCard.ExpireYear = "2030";
-            paymentCard.Cvc = "123";
+            paymentCard.CardHolderName = paymentDto.CardDetailDto.CardHolderName;
+            paymentCard.CardNumber = paymentDto.CardDetailDto.CardNumber;
+            paymentCard.ExpireMonth = paymentDto.CardDetailDto.ExpireMonth;
+            paymentCard.ExpireYear = paymentDto.CardDetailDto.ExpireYear;
+            paymentCard.Cvc = paymentDto.CardDetailDto.Cvc;
             paymentCard.RegisterCard = 0;
             request.PaymentCard = paymentCard;
 
@@ -63,37 +70,38 @@ namespace Doctorla.Business.Helpers
             buyer.LastLoginDate = "2015-10-05 12:43:35";
             buyer.RegistrationDate = "2013-04-21 15:12:09";
             buyer.RegistrationAddress = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-            buyer.Ip = "85.34.78.112";
+            buyer.Ip = paymentDto.IpAddress;
             buyer.City = "Istanbul";
             buyer.Country = "Turkey";
             buyer.ZipCode = "34732";
             request.Buyer = buyer;
 
             var shippingAddress = new Address();
-            shippingAddress.ContactName = "Jane Doe";
-            shippingAddress.City = "Istanbul";
-            shippingAddress.Country = "Turkey";
-            shippingAddress.Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-            shippingAddress.ZipCode = "34742";
+            shippingAddress.ContactName = paymentDto.BillingAddressDto.ContactName;
+            shippingAddress.City = paymentDto.BillingAddressDto.City;
+            shippingAddress.Country = paymentDto.BillingAddressDto.Country;
+            shippingAddress.Description = paymentDto.BillingAddressDto.Description;
+            shippingAddress.ZipCode = paymentDto.BillingAddressDto.ZipCode;
             request.ShippingAddress = shippingAddress;
 
             var billingAddress = new Address();
-            billingAddress.ContactName = "Jane Doe";
-            billingAddress.City = "Istanbul";
-            billingAddress.Country = "Turkey";
-            billingAddress.Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-            billingAddress.ZipCode = "34742";
+            billingAddress.ContactName = paymentDto.BillingAddressDto.ContactName;
+            billingAddress.City = paymentDto.BillingAddressDto.City;
+            billingAddress.Country = paymentDto.BillingAddressDto.Country;
+            billingAddress.Description = paymentDto.BillingAddressDto.Description;
+            billingAddress.ZipCode = paymentDto.BillingAddressDto.ZipCode;
             request.BillingAddress = billingAddress;
 
             var basketItems = new List<BasketItem>();
 
             var basketItem = new BasketItem();
-            basketItem.Id = "BI101";
-            basketItem.Name = "Binocular";
-            basketItem.Category1 = "Collectibles";
-            basketItem.Category2 = "Accessories";
+            basketItem.Id = appointment.SessionKey + appointment.Id.ToString();
+            basketItem.Name = appointment.Id.ToString();
+            basketItem.Category1 = firstCategory;
+            basketItem.Category2 = secondCategory;
             basketItem.ItemType = BasketItemType.VIRTUAL.ToString();
-            basketItem.Price = "1";
+            //Todo - check if this asks for 9 as 900 (like stripe)
+            basketItem.Price = appointment.Price.ToString();
             basketItems.Add(basketItem);
 
             request.BasketItems = basketItems;
