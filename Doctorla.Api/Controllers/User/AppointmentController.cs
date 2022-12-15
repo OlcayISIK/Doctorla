@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Doctorla.Core.Communication;
+using Doctorla.Business.Helpers;
 
 namespace Doctorla.Api.Controllers.User
 {
