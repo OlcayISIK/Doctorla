@@ -59,7 +59,7 @@ namespace Doctorla.Data.Entities.SystemUsers
 
         //public UserDetail UserDetail { get; set; }
 
-        public DoctorDetail DoctorDetail { get; set; }
+        //public DoctorDetail DoctorDetail { get; set; }
 
         public UserType UserType { get; set; }
         [JsonIgnore]
