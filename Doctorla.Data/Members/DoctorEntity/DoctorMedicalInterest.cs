@@ -1,5 +1,4 @@
-﻿using Doctorla.Data.Members.DoctorEntity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,12 +8,9 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Members.DoctorEntity
 {
-    public class DoctorExperiences : Entity
+    public class DoctorMedicalInterest : Entity
     {
-        public string ExperienceName { get; set; }
-        public string Specialty { get; set; }
-        public DateTime BeginDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public string Name { get; set; }
         public long DoctorId { get; set; }
         public Doctor Doctor { get; set; }
     }

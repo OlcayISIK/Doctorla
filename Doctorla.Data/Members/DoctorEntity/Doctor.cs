@@ -19,9 +19,9 @@ namespace Doctorla.Data.Members.DoctorEntity
         //[NotMapped]
         //public int BlogView { get; set; }
 
-        public List<DoctorEducations> DoctorEducations { get; set; }
-        public List<DoctorExperiences> DoctorExperiences { get; set; }
-        public List<DoctorMedicalInterests> DoctorMedicalInterests { get; set; }
+        public List<DoctorEducation> DoctorEducations { get; set; }
+        public List<DoctorExperience> DoctorExperiences { get; set; }
+        public List<DoctorMedicalInterest> DoctorMedicalInterests { get; set; }
         public List<DoctorScientificMembership> DoctorScientificMembership { get; set; }
     }
 }

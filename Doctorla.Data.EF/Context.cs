@@ -70,10 +70,10 @@ namespace Doctorla.Data.EF
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<DoctorExperiences> DoctorExperiences { get; set; }
-        public DbSet<DoctorMedicalInterests> DoctorMedicalInterests { get; set; }
+        public DbSet<DoctorExperience> DoctorExperiences { get; set; }
+        public DbSet<DoctorMedicalInterest> DoctorMedicalInterests { get; set; }
         public DbSet<DoctorScientificMembership> DoctorScientificMemberships { get; set; }
-        public DbSet<DoctorEducations> DoctorEducations { get; set; }
+        public DbSet<DoctorEducation> DoctorEducations { get; set; }
 
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
