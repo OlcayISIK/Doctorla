@@ -8,6 +8,7 @@ using Doctorla.Data.Members.DoctorEntity;
 using Doctorla.Data.Shared.Blog;
 using Doctorla.Dto;
 using Doctorla.Dto.Members;
+using Doctorla.Dto.Members.DoctorEntity;
 using Doctorla.Dto.Shared.Blog;
 using Doctorla.Repository;
 using Microsoft.AspNetCore.Http;
@@ -63,14 +64,55 @@ namespace Doctorla.Business.Concrete
             _unitOfWork.Doctors.Add(entity);
             await _unitOfWork.Commit();
 
+            var educations = _mapper.Map<List<DoctorEducation>>(doctorDto.EducationsBatch?.AddedItems);
+            var experiences = _mapper.Map<List<DoctorExperience>>(doctorDto.ExperienceBatch?.AddedItems);
+            var medicalInterests = _mapper.Map<List<DoctorMedicalInterest>>(doctorDto.MedicalInterestBatch?.AddedItems);
+            var scientificMemberships = _mapper.Map<List<DoctorScientificMembership>>(doctorDto.ScientificMembershipBatch?.AddedItems);
+
+            educations.ForEach(x => { x.Doctor = entity; });
+            experiences.ForEach(x => { x.Doctor = entity; });
+            medicalInterests.ForEach(x => { x.Doctor = entity; });
+            scientificMemberships.ForEach(x => { x.Doctor = entity; });
+
+            _unitOfWork.DoctorEducations.AddRange(educations);
+            _unitOfWork.DoctorExperiences.AddRange(experiences);
+            _unitOfWork.DoctorMedicalInterests.AddRange(medicalInterests);
+            _unitOfWork.DoctorScientificMemberships.AddRange(scientificMemberships);
+
             return Result<bool>.CreateSuccessResult(true);
         }
 
         public async Task<Result<bool>> Update(DoctorDto doctorDto)
         {
-            var entity = await _unitOfWork.Specialties.GetAsTracking(doctorDto.Id).FirstOrDefaultAsync();
+            var entity = await _unitOfWork.Doctors.GetAsTracking(doctorDto.Id).FirstOrDefaultAsync();
             _mapper.Map(doctorDto, entity);
             await _unitOfWork.Commit();
+
+            //Todo - refactor this
+            ExtractDoctorDetailEntities<DoctorEducationDto, DoctorEducation>(doctorDto.EducationsBatch, out var educationsBatch);
+            educationsBatch.AddedItems.ForEach(x => { x.Doctor = entity; });
+            educationsBatch.UpdatedItems.ForEach(x => { x.Doctor = entity; });
+            educationsBatch.RemovedItems.ForEach(x => { x.Doctor = entity; });
+
+            ExtractDoctorDetailEntities<DoctorExperienceDto, DoctorExperience>(doctorDto.ExperienceBatch, out var experiencesBatch);
+            experiencesBatch.AddedItems.ForEach(x => { x.Doctor = entity; });
+            experiencesBatch.UpdatedItems.ForEach(x => { x.Doctor = entity; });
+            experiencesBatch.RemovedItems.ForEach(x => { x.Doctor = entity; });
+
+            ExtractDoctorDetailEntities<DoctorMedicalInterestDto, DoctorMedicalInterest>(doctorDto.MedicalInterestBatch, out var medicalInteretsBatch);
+            medicalInteretsBatch.AddedItems.ForEach(x => { x.Doctor = entity; });
+            medicalInteretsBatch.UpdatedItems.ForEach(x => { x.Doctor = entity; });
+            medicalInteretsBatch.RemovedItems.ForEach(x => { x.Doctor = entity; });
+
+            ExtractDoctorDetailEntities<DoctorScientificMembershipDto, DoctorScientificMembership>(doctorDto.ScientificMembershipBatch, out var scientificMembershipsBatch);
+            scientificMembershipsBatch.AddedItems.ForEach(x => { x.Doctor = entity; });
+            scientificMembershipsBatch.UpdatedItems.ForEach(x => { x.Doctor = entity; });
+            scientificMembershipsBatch.RemovedItems.ForEach(x => { x.Doctor = entity; });
+
+            _unitOfWork.DoctorEducations.BatchUpdate(educationsBatch);
+            _unitOfWork.DoctorExperiences.BatchUpdate(experiencesBatch);
+            _unitOfWork.DoctorMedicalInterests.BatchUpdate(medicalInteretsBatch);
+            _unitOfWork.DoctorScientificMemberships.BatchUpdate(scientificMembershipsBatch);
 
             return Result<bool>.CreateSuccessResult(true);
         }
@@ -81,6 +123,37 @@ namespace Doctorla.Business.Concrete
             doctor.IsDeleted = true;
             await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);
+        }
+        #endregion
+
+        #region Helpers
+        private void ExtractDoctorDetailEntities<TDto, TEntity>(BatchDto<TDto> dtos, out BatchDto<TEntity> entitiesBatch)
+        {
+            if (dtos == null)
+            {
+                entitiesBatch = null;
+                return;
+            }
+
+            entitiesBatch = new BatchDto<TEntity>();
+
+            foreach (var detailDto in dtos.AddedItems)
+            {
+                var entity = _mapper.Map<TEntity>(detailDto);
+                entitiesBatch.AddedItems.Add(entity);
+            }
+
+            foreach (var detailDto in dtos.UpdatedItems)
+            {
+                var entity = _mapper.Map<TEntity>(detailDto);
+                entitiesBatch.UpdatedItems.Add(entity);
+            }
+
+            foreach (var detailDto in dtos.RemovedItems)
+            {
+                var entity = _mapper.Map<TEntity>(detailDto);
+                entitiesBatch.RemovedItems.Add(entity);
+            }
         }
         #endregion
     }

@@ -20,12 +20,18 @@ namespace Doctorla.Repository
         public IAppointmentRepository Appointments { get; }
         public ISpecialtyRepository Specialties { get; }
         public IBlogPostRepository BlogPosts { get; }
+        public IDoctorEducationsRepository DoctorEducations { get; }
+        public IDoctorExperiencesRepository DoctorExperiences { get; }
+        public IDoctorMedicalInterestsRepository DoctorMedicalInterests { get; }
+        public IDoctorScientificMembershipsRepository DoctorScientificMemberships { get; }
 
         public UnitOfWork(Context context, IRedisTokenRepository refreshTokens,
             IAdminRepository admins, IUserRepository users,
             IHospitalRepository hospitals, IDoctorRepository doctors,
             IAppointmentRepository appointments, ISpecialtyRepository specialties,
-            IBlogPostRepository blogPosts)
+            IBlogPostRepository blogPosts, IDoctorEducationsRepository doctorEducations,
+            IDoctorExperiencesRepository doctorExperiences, IDoctorMedicalInterestsRepository doctorMedicalInterests,
+            IDoctorScientificMembershipsRepository doctorScientificMemberships)
         {
             _context = context;
             RedisTokens = refreshTokens;
@@ -36,6 +42,10 @@ namespace Doctorla.Repository
             Appointments = appointments;
             Specialties = specialties;
             BlogPosts = blogPosts;
+            DoctorEducations = doctorEducations;
+            DoctorExperiences = doctorExperiences;
+            DoctorMedicalInterests = doctorMedicalInterests;
+            DoctorScientificMemberships = doctorScientificMemberships;
         }
         public void Dispose()
         {
