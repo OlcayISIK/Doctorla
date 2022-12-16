@@ -1,6 +1,7 @@
 ﻿using Doctorla.Data.Entities.SystemAppoinments;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
+using Doctorla.Dto.Members;
 using Doctorla.Dto.Shared;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Doctorla.Business.Abstract
     {
         #region Shared
         Task<Result<IEnumerable<SpecialtyDto>>> GetAll();
+        Task<Result<SpecialtyDto>> Get(long id);
+        Task<Result<IEnumerable<DoctorDto>>> GetDoctorWithSpecialities(long id);
         #endregion
 
         #region Admin

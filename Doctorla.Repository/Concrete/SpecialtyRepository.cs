@@ -1,10 +1,16 @@
-﻿using Doctorla.Data.EF;
+﻿using Doctorla.Core.Enums;
+using Doctorla.Data.EF;
 using Doctorla.Data.Entities;
 using Doctorla.Data.Members;
+using Doctorla.Data.Members.DoctorEntity;
 using Doctorla.Data.Shared;
+using Doctorla.Dto.Members;
+using Doctorla.Dto.Shared;
 using Doctorla.Repository.Abstract;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

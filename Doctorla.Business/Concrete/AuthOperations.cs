@@ -300,7 +300,7 @@ namespace Doctorla.Business.Concrete
                 Title = dto.Title,
                 BirthDate = dto.BirthDate,
                 Gender = dto.Gender,
-                Specialty = dto.Specialty,
+                SpecialtyId = dto.SpecialtyId,
                 AccountStatus = AccountStatus.Created
             });
             await _unitOfWork.Commit();
