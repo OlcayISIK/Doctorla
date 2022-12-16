@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Doctorla.Data.Entities.Doc;
 
 namespace Doctorla.Data.Entities
 {
@@ -15,6 +14,5 @@ namespace Doctorla.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int DoctorDetailId { get; set; }
-        public DoctorDetail DoctorDetail { get; set; }
     }
 }

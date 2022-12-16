@@ -4,7 +4,7 @@ using Doctorla.Core.Enums;
 using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
 using Doctorla.Data.Entities.SystemAppoinments;
-using Doctorla.Data.Members.Doctor;
+using Doctorla.Data.Members.DoctorEntity;
 using Doctorla.Data.Shared.Blog;
 using Doctorla.Dto;
 using Doctorla.Dto.Members;

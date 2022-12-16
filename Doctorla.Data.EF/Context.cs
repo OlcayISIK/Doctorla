@@ -8,7 +8,6 @@ using System.Linq;
 using Doctorla.Data.Members;
 using Doctorla.Data.Shared;
 using Doctorla.Data.Shared.Blog;
-using Doctorla.Data.Members.Doctor;
 using Doctorla.Data.Members.DoctorEntity;
 
 namespace Doctorla.Data.EF
