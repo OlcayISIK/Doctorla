@@ -18,6 +18,10 @@ namespace Doctorla.Repository
         IUserRepository Users { get; }
         IHospitalRepository Hospitals { get; }
         IDoctorRepository Doctors { get; }
+        IDoctorEducationsRepository DoctorEducations { get; }
+        IDoctorExperiencesRepository DoctorExperiences { get; }
+        IDoctorMedicalInterestsRepository DoctorMedicalInterests { get; }
+        IDoctorScientificMembershipsRepository DoctorScientificMemberships { get; }
         
 
         IAppointmentRepository Appointments { get; }
