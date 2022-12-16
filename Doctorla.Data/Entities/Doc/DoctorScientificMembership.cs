@@ -6,24 +6,23 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Doctorla.Data.Entities.Doctor
+namespace Doctorla.Data.Entities.Doc
 {
-    public class DoctorEducations : IDoctorDetails
+    public class DoctorScientificMembership : IDoctorDetails
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Lütfen Üniversite Adını Boş Geçmeyiniz")]
+        [Required(ErrorMessage = "Lütfen Organizasyon Adını Boş Geçmeyiniz")]
         public string Name { get; set; }
         public string DefaultName { get; set; }
-        public string Branch { get; set; }
 
-        [Required(ErrorMessage = "Lütfen Üniversite Başlangıç  Girin")]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
-        public DateTime BeginDate { get; set; }
-        [Required(ErrorMessage = "Lütfen Üniversite Bitiş  Girin")]
+        public DateTime? BeginDate { get; set; }
+
+
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public int DoctorDetailId { get; set; }
         [JsonIgnore]
         public DoctorDetail DoctorDetail { get; set; }

@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Doctorla.Data.Members;
 
-namespace Doctorla.Data.Entities.Doctor
+namespace Doctorla.Data.Entities.Doc
 {
     public class DoctorDetail : Entity
     {

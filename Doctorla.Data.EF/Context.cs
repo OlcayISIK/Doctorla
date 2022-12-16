@@ -8,6 +8,8 @@ using System.Linq;
 using Doctorla.Data.Members;
 using Doctorla.Data.Shared;
 using Doctorla.Data.Shared.Blog;
+using Doctorla.Data.Members.Doctor;
+using Doctorla.Data.Members.DoctorEntity;
 
 namespace Doctorla.Data.EF
 {
@@ -69,6 +71,10 @@ namespace Doctorla.Data.EF
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<DoctorExperiences> DoctorExperiences { get; set; }
+        public DbSet<DoctorMedicalInterests> DoctorMedicalInterests { get; set; }
+        public DbSet<DoctorScientificMembership> DoctorScientificMemberships { get; set; }
+        public DbSet<DoctorEducations> DoctorEducations { get; set; }
 
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
