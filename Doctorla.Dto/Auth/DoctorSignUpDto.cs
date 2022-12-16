@@ -15,9 +15,7 @@ namespace Doctorla.Dto.Auth
         public string PhoneNumber { get; set; }
         public string Gender { get; set; }
         public DateTime BirthDate { get; set; }
-        public string University { get; set; }
         public string Specialty { get; set; }
         public string Title { get; set; }
-        public string ProfessionGroup { get; set; }
     }
 }

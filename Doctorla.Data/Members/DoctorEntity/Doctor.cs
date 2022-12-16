@@ -11,8 +11,8 @@ namespace Doctorla.Data.Members.DoctorEntity
     public class Doctor : Member
     {
         public string Title { get; set; } // Ünvan
-        public string HospitalName { get; set; }
         public string Introduction { get; set; }
+        public string Specialty { get; set; }
         public string Facebook { get; set; }
         public string Instagram { get; set; }
         public string Website { get; set; }

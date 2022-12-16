@@ -8,6 +8,7 @@ using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
 using Doctorla.Data;
 using Doctorla.Data.Members;
+using Doctorla.Data.Members.DoctorEntity;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
 using Doctorla.Repository;
@@ -288,16 +289,19 @@ namespace Doctorla.Business.Concrete
             // create user
             var entity = _unitOfWork.Doctors.Add(new Doctor
             {
-                //CreatedAt = now,
-                //Email = dto.Email,
-                //LastModifiedAt = now,
-                //Name = dto.Name,
-                //Surname = dto.Surname,
-                //HospitalId = dto.HospitalId,
-                //PhoneNumber = dto.PhoneNumber,
-                //HashedPassword = new CustomPasswordHasher().HashPassword(dto.Password),
-                //// TODO fix what is wrong with user approving, then change this
-                //Status = UserStatus.Created
+                CreatedAt = now,
+                Email = dto.Email,
+                LastModifiedAt = now,
+                Name = dto.Name,
+                Surname = dto.Surname,
+                PhoneNumber = dto.PhoneNumber,
+                HashedPassword = new CustomPasswordHasher().HashPassword(dto.Password),
+                // TODO fix what is wrong with user approving, then change this
+                Title = dto.Title,
+                BirthDate = dto.BirthDate,
+                Gender = dto.Gender,
+                Specialty = dto.Specialty,
+                AccountStatus = AccountStatus.Created
             });
             await _unitOfWork.Commit();
 
