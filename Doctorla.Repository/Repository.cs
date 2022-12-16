@@ -1,5 +1,6 @@
 ﻿using Doctorla.Data;
 using Doctorla.Data.EF;
+using Doctorla.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,14 @@ namespace Doctorla.Repository
             entity.LastModifiedAt = dateTime;
         }
 
+        protected void SetDefaultProperties(IEnumerable<TEntity> entities, DateTime dateTime, bool updateCreationProperties)
+        {
+            foreach (var entity in entities)
+            {
+                SetDefaultProperties(entity, dateTime, updateCreationProperties);
+            }
+        }
+
         public void Remove(long id)
         {
             var entry = Context.Attach(new TEntity { Id = id });
@@ -88,6 +97,37 @@ namespace Doctorla.Repository
                 entry.Property(x => x.IsDeleted).IsModified = true;
                 entry.Property(x => x.IsDeleted).CurrentValue = true;
                 entity.LastModifiedAt = now;
+            }
+        }
+
+        public virtual IEnumerable<TEntity> AddRange(IEnumerable<TEntity> entities)
+        {
+            var list = entities.ToList();
+            SetDefaultProperties(list, DateTime.UtcNow, true);
+            Context.Set<TEntity>().AddRange(list);
+            return list;
+        }
+
+        public void BatchUpdate(BatchDto<TEntity> batch)
+        {
+            if (batch == null) return;
+            if (batch.AddedItems != null)
+                AddRange(batch.AddedItems);
+            if (batch.UpdatedItems != null)
+                UpdateRange(batch.UpdatedItems);
+            if (batch.RemovedItems != null)
+                RemoveRange(batch.RemovedItems);
+        }
+
+        private void UpdateRange(List<TEntity> entities)
+        {
+            if (entities == null) return;
+            var now = DateTime.UtcNow;
+            foreach (var entity in entities)
+            {
+                SetDefaultProperties(entities, now, false);
+                var entry = Context.Set<TEntity>().Update(entity);
+                entry.Property(x => x.CreatedAt).IsModified = false;
             }
         }
     }
