@@ -1,4 +1,9 @@
-﻿using Iyzipay;
+﻿using Doctorla.Core.InternalDtos;
+using Doctorla.Data.Members;
+using Doctorla.Data.Shared;
+using Doctorla.Dto;
+using Doctorla.Dto.Payment;
+using Iyzipay;
 using Iyzipay.Model;
 using Iyzipay.Request;
 using System;
@@ -11,95 +16,97 @@ namespace Doctorla.Business.Helpers
 {
     public static class IyzicoHelper
     {
-        //void Buy()
-        //{
-        //    Options options = new Options();
-        //    options.ApiKey = "your api key";
-        //    options.SecretKey = "your secret key";
-        //    options.BaseUrl = "https://sandbox-api.iyzipay.com";
+        private const string firstCategory = "Health"; 
+        private const string secondCategory = "Online Health Service\""; 
 
-        //    CreatePaymentRequest request = new CreatePaymentRequest();
-        //    request.Locale = Locale.TR.ToString();
-        //    request.ConversationId = "123456789";
-        //    request.Price = "1";
-        //    request.PaidPrice = "1.2";
-        //    request.Currency = Currency.TRY.ToString();
-        //    request.Installment = 1;
-        //    request.BasketId = "B67832";
-        //    request.PaymentChannel = PaymentChannel.WEB.ToString();
-        //    request.PaymentGroup = PaymentGroup.PRODUCT.ToString();
+        public static bool MakePayment(IyzicoAPI iyzicoApi, PaymentDto paymentDto, User user, Appointment appointment)
+        {
+            var result = SendPaymentRequest(iyzicoApi, paymentDto, user, appointment);
 
-        //    PaymentCard paymentCard = new PaymentCard();
-        //    paymentCard.CardHolderName = "John Doe";
-        //    paymentCard.CardNumber = "5528790000000008";
-        //    paymentCard.ExpireMonth = "12";
-        //    paymentCard.ExpireYear = "2030";
-        //    paymentCard.Cvc = "123";
-        //    paymentCard.RegisterCard = 0;
-        //    request.PaymentCard = paymentCard;
+            //status == "failure" if failed
+            if (result.Status == "success")
+                return true;
 
-        //    Buyer buyer = new Buyer();
-        //    buyer.Id = "BY789";
-        //    buyer.Name = "John";
-        //    buyer.Surname = "Doe";
-        //    buyer.GsmNumber = "+905350000000";
-        //    buyer.Email = "email@email.com";
-        //    buyer.IdentityNumber = "74300864791";
-        //    buyer.LastLoginDate = "2015-10-05 12:43:35";
-        //    buyer.RegistrationDate = "2013-04-21 15:12:09";
-        //    buyer.RegistrationAddress = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-        //    buyer.Ip = "85.34.78.112";
-        //    buyer.City = "Istanbul";
-        //    buyer.Country = "Turkey";
-        //    buyer.ZipCode = "34732";
-        //    request.Buyer = buyer;
+            //log error
+            return false;
+        }
+        
+        //Todo - given ids are copied from old application, check if it needs to be normalized
+        private static Payment SendPaymentRequest(IyzicoAPI iyzicoApi, PaymentDto paymentDto, User user, Appointment appointment)
+        {
+            var options = new Options();
+            options.ApiKey = iyzicoApi.ApiKey;
+            options.SecretKey = iyzicoApi.SecretKey;
+            options.BaseUrl = iyzicoApi.Url;
 
-        //    Address shippingAddress = new Address();
-        //    shippingAddress.ContactName = "Jane Doe";
-        //    shippingAddress.City = "Istanbul";
-        //    shippingAddress.Country = "Turkey";
-        //    shippingAddress.Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-        //    shippingAddress.ZipCode = "34742";
-        //    request.ShippingAddress = shippingAddress;
+            var request = new CreatePaymentRequest();
+            request.Locale = Locale.TR.ToString();
+            request.ConversationId = appointment.Id.ToString() + ":" + user.Id.ToString();
+            request.Price = appointment.Price.ToString();
+            //For commision
+            request.PaidPrice = appointment.Price.ToString();
+            request.Currency = Currency.TRY.ToString();
+            //request.Installment = 1;
+            request.BasketId = appointment.SessionKey;
+            request.PaymentChannel = PaymentChannel.WEB.ToString();
+            request.PaymentGroup = PaymentGroup.PRODUCT.ToString();
 
-        //    Address billingAddress = new Address();
-        //    billingAddress.ContactName = "Jane Doe";
-        //    billingAddress.City = "Istanbul";
-        //    billingAddress.Country = "Turkey";
-        //    billingAddress.Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-        //    billingAddress.ZipCode = "34742";
-        //    request.BillingAddress = billingAddress;
+            var paymentCard = new PaymentCard();
+            paymentCard.CardHolderName = paymentDto.CardDetailDto.CardHolderName;
+            paymentCard.CardNumber = paymentDto.CardDetailDto.CardNumber;
+            paymentCard.ExpireMonth = paymentDto.CardDetailDto.ExpireMonth;
+            paymentCard.ExpireYear = paymentDto.CardDetailDto.ExpireYear;
+            paymentCard.Cvc = paymentDto.CardDetailDto.Cvc;
+            paymentCard.RegisterCard = 0;
+            request.PaymentCard = paymentCard;
 
-        //    List<BasketItem> basketItems = new List<BasketItem>();
-        //    BasketItem firstBasketItem = new BasketItem();
-        //    firstBasketItem.Id = "BI101";
-        //    firstBasketItem.Name = "Binocular";
-        //    firstBasketItem.Category1 = "Collectibles";
-        //    firstBasketItem.Category2 = "Accessories";
-        //    firstBasketItem.ItemType = BasketItemType.PHYSICAL.ToString();
-        //    firstBasketItem.Price = "0.3";
-        //    basketItems.Add(firstBasketItem);
+            var buyer = new Buyer();
+            buyer.Id = user.Id.ToString();
+            buyer.Name = user.Name;
+            buyer.Surname = user.Surname;
+            buyer.GsmNumber = user.PhoneNumber;
+            buyer.Email = user.Email;
+            buyer.IdentityNumber = "74300864791";
+            buyer.LastLoginDate = "2015-10-05 12:43:35";
+            buyer.RegistrationDate = "2013-04-21 15:12:09";
+            buyer.RegistrationAddress = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
+            buyer.Ip = paymentDto.IpAddress;
+            buyer.City = "Istanbul";
+            buyer.Country = "Turkey";
+            buyer.ZipCode = "34732";
+            request.Buyer = buyer;
 
-        //    BasketItem secondBasketItem = new BasketItem();
-        //    secondBasketItem.Id = "BI102";
-        //    secondBasketItem.Name = "Game code";
-        //    secondBasketItem.Category1 = "Game";
-        //    secondBasketItem.Category2 = "Online Game Items";
-        //    secondBasketItem.ItemType = BasketItemType.VIRTUAL.ToString();
-        //    secondBasketItem.Price = "0.5";
-        //    basketItems.Add(secondBasketItem);
+            var shippingAddress = new Address();
+            shippingAddress.ContactName = paymentDto.BillingAddressDto.ContactName;
+            shippingAddress.City = paymentDto.BillingAddressDto.City;
+            shippingAddress.Country = paymentDto.BillingAddressDto.Country;
+            shippingAddress.Description = paymentDto.BillingAddressDto.Description;
+            shippingAddress.ZipCode = paymentDto.BillingAddressDto.ZipCode;
+            request.ShippingAddress = shippingAddress;
 
-        //    BasketItem thirdBasketItem = new BasketItem();
-        //    thirdBasketItem.Id = "BI103";
-        //    thirdBasketItem.Name = "Usb";
-        //    thirdBasketItem.Category1 = "Electronics";
-        //    thirdBasketItem.Category2 = "Usb / Cable";
-        //    thirdBasketItem.ItemType = BasketItemType.PHYSICAL.ToString();
-        //    thirdBasketItem.Price = "0.2";
-        //    basketItems.Add(thirdBasketItem);
-        //    request.BasketItems = basketItems;
+            var billingAddress = new Address();
+            billingAddress.ContactName = paymentDto.BillingAddressDto.ContactName;
+            billingAddress.City = paymentDto.BillingAddressDto.City;
+            billingAddress.Country = paymentDto.BillingAddressDto.Country;
+            billingAddress.Description = paymentDto.BillingAddressDto.Description;
+            billingAddress.ZipCode = paymentDto.BillingAddressDto.ZipCode;
+            request.BillingAddress = billingAddress;
 
-        //    Payment payment = Payment.Create(request, options);
-        //}
+            var basketItems = new List<BasketItem>();
+
+            var basketItem = new BasketItem();
+            basketItem.Id = appointment.SessionKey + appointment.Id.ToString();
+            basketItem.Name = appointment.Id.ToString();
+            basketItem.Category1 = firstCategory;
+            basketItem.Category2 = secondCategory;
+            basketItem.ItemType = BasketItemType.VIRTUAL.ToString();
+            //Todo - check if this asks for 9 as 900 (like stripe)
+            basketItem.Price = appointment.Price.ToString();
+            basketItems.Add(basketItem);
+
+            request.BasketItems = basketItems;
+            
+            return Payment.Create(request, options);
+        }
     }
 }
