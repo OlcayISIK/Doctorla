@@ -11,7 +11,6 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Doctorla.Data.Entities.SystemAppoinments;
-using Doctorla.Data.Entities.Doc;
 
 namespace Doctorla.Data.Entities.SystemUsers
 {
@@ -60,7 +59,7 @@ namespace Doctorla.Data.Entities.SystemUsers
 
         //public UserDetail UserDetail { get; set; }
 
-        public DoctorDetail DoctorDetail { get; set; }
+        //public DoctorDetail DoctorDetail { get; set; }
 
         public UserType UserType { get; set; }
         [JsonIgnore]

@@ -8,6 +8,7 @@ using Doctorla.Core.InternalDtos;
 using Doctorla.Core.Utils;
 using Doctorla.Data;
 using Doctorla.Data.Members;
+using Doctorla.Data.Members.DoctorEntity;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
 using Doctorla.Repository;

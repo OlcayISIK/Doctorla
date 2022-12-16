@@ -1,7 +1,7 @@
 ﻿using Doctorla.Core.Enums;
 using Doctorla.Data.EF;
 using Doctorla.Data.Entities;
-using Doctorla.Data.Members.Doctor;
+using Doctorla.Data.Members.DoctorEntity;
 using Doctorla.Repository.Abstract;
 using System;
 using System.Collections.Generic;

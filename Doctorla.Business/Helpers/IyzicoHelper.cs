@@ -66,13 +66,13 @@ namespace Doctorla.Business.Helpers
             buyer.Surname = user.Surname;
             buyer.GsmNumber = user.PhoneNumber;
             buyer.Email = user.Email;
-            buyer.IdentityNumber = "74300864791";
-            buyer.LastLoginDate = "2015-10-05 12:43:35";
-            buyer.RegistrationDate = "2013-04-21 15:12:09";
-            buyer.RegistrationAddress = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
+            buyer.IdentityNumber = user.IdentificationNumber.ToString();
+            buyer.LastLoginDate = user.LastLoginDate.ToString(); //"2015-10-05 12:43:35"
+            buyer.RegistrationDate = user.CreatedAt.ToString(); //"2013-04-21 15:12:09"
+            buyer.RegistrationAddress = user.Address; //"Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
             buyer.Ip = paymentDto.IpAddress;
-            buyer.City = "Istanbul";
-            buyer.Country = "Turkey";
+            buyer.City = user.City; //"Istanbul";
+            buyer.Country = user.Country; //"Turkey";
             buyer.ZipCode = "34732";
             request.Buyer = buyer;
 

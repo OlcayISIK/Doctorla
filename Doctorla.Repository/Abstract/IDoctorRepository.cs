@@ -1,6 +1,6 @@
 ﻿using Doctorla.Data.Entities;
 using Doctorla.Data.Entities.SystemUsers;
-using Doctorla.Data.Members.Doctor;
+using Doctorla.Data.Members.DoctorEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

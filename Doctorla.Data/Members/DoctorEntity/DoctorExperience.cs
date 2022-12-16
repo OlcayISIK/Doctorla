@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Doctorla.Data.Members.DoctorEntity
 {
-    public class DoctorExperiences : Entity
+    public class DoctorExperience : Entity
     {
-        public string ExperienceName { get; set; }
+        public string Name { get; set; }
         public string Specialty { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
