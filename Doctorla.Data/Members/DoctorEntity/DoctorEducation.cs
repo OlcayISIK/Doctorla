@@ -10,7 +10,6 @@ namespace Doctorla.Data.Members.DoctorEntity
     public class DoctorEducation : Entity
     {
         public string Name { get; set; }
-        public string DefaultName { get; set; }
         public string Specialty { get; set; }
 
         public DateTime BeginDate { get; set; }
