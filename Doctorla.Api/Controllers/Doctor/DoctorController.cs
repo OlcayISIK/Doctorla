@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Doctorla.Dto.Members;
+using Doctorla.Dto.Members.DoctorEntity;
 
 namespace Doctorla.Api.Controllers.Doctor
 {

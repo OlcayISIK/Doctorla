@@ -7,6 +7,7 @@ using Doctorla.Data.Entities.SystemAppoinments;
 using Doctorla.Data.Shared;
 using Doctorla.Dto;
 using Doctorla.Dto.Members;
+using Doctorla.Dto.Members.DoctorEntity;
 using Doctorla.Dto.Shared;
 using Doctorla.Repository;
 using Microsoft.AspNetCore.Http;

@@ -2,6 +2,7 @@
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
 using Doctorla.Dto.Members;
+using Doctorla.Dto.Members.DoctorEntity;
 using Doctorla.Dto.Shared;
 using System;
 using System.Collections.Generic;
