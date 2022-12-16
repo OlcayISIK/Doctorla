@@ -1,19 +1,17 @@
 ﻿using Doctorla.Business.Abstract;
 using Doctorla.Core;
-using Doctorla.Dto;
 using Doctorla.Dto.Auth;
-using Microsoft.AspNetCore.Authorization;
+using Doctorla.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace Doctorla.Api.Controllers.Admin
+namespace Doctorla.Api.Controllers.User
 {
     /// <summary>
     /// Authentication related endpoints
     /// </summary>
     [ApiController]
-    [Route("api/admin/[controller]")]
-    [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.Admin)]
+    [Route("api/user/[controller]")]
     public class AuthController : Controller
     {
         private readonly IAuthOperations _authOperations;
@@ -30,7 +28,7 @@ namespace Doctorla.Api.Controllers.Admin
         [HttpPost("pass")]
         public async Task<Result<TokenDto>> AuthenticateViaPassword([FromBody] LoginDto loginDto)
         {
-            return await _authOperations.AdminAuthenticateViaPassword(loginDto);
+            return await _authOperations.UserAuthenticateViaPassword(loginDto);
         }
 
         /// <summary>
@@ -39,7 +37,16 @@ namespace Doctorla.Api.Controllers.Admin
         [HttpPost("token")]
         public async Task<Result<TokenDto>> AuthenticateViaToken([FromBody] TokenDto token)
         {
-            return await _authOperations.AdminAuthenticateViaToken(token.RefreshToken);
+            return await _authOperations.UserAuthenticateViaToken(token.RefreshToken);
+        }
+
+        /// <summary>
+        /// Doctor Register
+        /// </summary>
+        [HttpPost("register")]
+        public async Task<Result<long>> Register([FromBody] UserSignUpDto signUpDto)
+        {
+            return await _authOperations.UserSignUp(signUpDto);
         }
 
         /// <summary>
@@ -48,7 +55,7 @@ namespace Doctorla.Api.Controllers.Admin
         [HttpPost("logout")]
         public async Task<Result<bool>> Logout([FromBody] string refreshToken)
         {
-            return await _authOperations.AdminLogout(refreshToken);
+            return await _authOperations.UserLogout(refreshToken);
         }
     }
 }

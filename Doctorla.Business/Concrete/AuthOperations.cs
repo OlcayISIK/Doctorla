@@ -148,7 +148,7 @@ namespace Doctorla.Business.Concrete
             await _unitOfWork.RedisTokens.Remove(dto.PasswordResetToken);
             return Result<bool>.CreateSuccessResult(true);
         }
-        public async Task<Result<long>> UserSignUp(SignUpDto dto)
+        public async Task<Result<long>> UserSignUp(UserSignUpDto dto)
         {
             if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
                 return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
@@ -160,32 +160,33 @@ namespace Doctorla.Business.Concrete
             // create user
             var entity = _unitOfWork.Users.Add(new User
             {
-                //CreatedAt = now,
-                //Email = dto.Email,
-                //LastModifiedAt = now,
-                //Name = dto.Name,
-                //Surname = dto.Surname,
-                //PhoneNumber = dto.PhoneNumber,
-                //HashedPassword = new CustomPasswordHasher().HashPassword(dto.Password),
-                //// TODO fix what is wrong with user approving, then change this
-                //Status = UserStatus.Created
+                CreatedAt = now,
+                Email = dto.Email,
+                LastModifiedAt = now,
+                Name = dto.Name,
+                Surname = dto.Surname,
+                PhoneNumber = dto.PhoneNumber,
+                BirthDate = dto.BirthDate,
+                HashedPassword = new CustomPasswordHasher().HashPassword(dto.Password),
+                // TODO fix what is wrong with user approving, then change this
+                Status = AccountStatus.Created
             });
             await _unitOfWork.Commit();
 
             // TODO fix what is wrong with user approving, then change this
             // save approval token
-            var approvalToken = Generate.ApprovalToken();
-            await _unitOfWork.RedisTokens.Set(new RedisToken { AccountType = AccountType.User, TokenType = RedisTokenType.UserApprovalToken, AccountId = entity.Id, TokenValue = approvalToken }, 2 * 60);
+            //var approvalToken = Generate.ApprovalToken();
+            //await _unitOfWork.RedisTokens.Set(new RedisToken { AccountType = AccountType.User, TokenType = RedisTokenType.UserApprovalToken, AccountId = entity.Id, TokenValue = approvalToken }, 2 * 60);
 
-            // TODO fix what is wrong with user approving, then change this
-            // send confirmation mail
-            var url = $"{ServiceLocator.AppSettings.ClientUrl}/userApproval?token={approvalToken}";
-            await EmailSender.Send(new Email
-            {
-                Subject = "Doctorla Account Creation Confirmation",
-                Body = $"Thank you for creating your account. In order to finish the process, please click on the following link : {url}",
-                EmailToList = new List<string> { dto.Email }
-            });
+            //// TODO fix what is wrong with user approving, then change this
+            //// send confirmation mail
+            //var url = $"{ServiceLocator.AppSettings.ClientUrl}/userApproval?token={approvalToken}";
+            //await EmailSender.Send(new Email
+            //{
+            //    Subject = "Doctorla Account Creation Confirmation",
+            //    Body = $"Thank you for creating your account. In order to finish the process, please click on the following link : {url}",
+            //    EmailToList = new List<string> { dto.Email }
+            //});
             return Result<long>.CreateSuccessResult(entity.Id);
         }
         public async Task<Result<bool>> DeleteUserAccount()
@@ -275,7 +276,7 @@ namespace Doctorla.Business.Concrete
             return Result<bool>.CreateSuccessResult(true);
         }
 
-        public async Task<Result<long>> DoctorSignUp(SignUpDto dto)
+        public async Task<Result<long>> DoctorSignUp(DoctorSignUpDto dto)
         {
             if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
                 return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
@@ -300,20 +301,20 @@ namespace Doctorla.Business.Concrete
             });
             await _unitOfWork.Commit();
 
-            // TODO fix what is wrong with user approving, then change this
-            // save approval token
-            var approvalToken = Generate.ApprovalToken();
-            await _unitOfWork.RedisTokens.Set(new RedisToken { AccountType = AccountType.Doctor, TokenType = RedisTokenType.UserApprovalToken, AccountId = entity.Id, TokenValue = approvalToken }, 2 * 60);
+            //// TODO fix what is wrong with user approving, then change this
+            //// save approval token
+            //var approvalToken = Generate.ApprovalToken();
+            //await _unitOfWork.RedisTokens.Set(new RedisToken { AccountType = AccountType.Doctor, TokenType = RedisTokenType.UserApprovalToken, AccountId = entity.Id, TokenValue = approvalToken }, 2 * 60);
 
-            // TODO fix what is wrong with user approving, then change this
-            // send confirmation mail
-            var url = $"{ServiceLocator.AppSettings.ClientUrl}/userApproval?token={approvalToken}";
-            await EmailSender.Send(new Email
-            {
-                Subject = "Doctorla Account Creation Confirmation",
-                Body = $"Thank you for creating your account. In order to finish the process, please click on the following link : {url}",
-                EmailToList = new List<string> { dto.Email }
-            });
+            //// TODO fix what is wrong with user approving, then change this
+            //// send confirmation mail
+            //var url = $"{ServiceLocator.AppSettings.ClientUrl}/userApproval?token={approvalToken}";
+            //await EmailSender.Send(new Email
+            //{
+            //    Subject = "Doctorla Account Creation Confirmation",
+            //    Body = $"Thank you for creating your account. In order to finish the process, please click on the following link : {url}",
+            //    EmailToList = new List<string> { dto.Email }
+            //});
             return Result<long>.CreateSuccessResult(entity.Id);
         }
 
@@ -414,7 +415,7 @@ namespace Doctorla.Business.Concrete
             return Result<bool>.CreateSuccessResult(true);
         }
 
-        public async Task<Result<long>> HospitalSignUp(SignUpDto dto)
+        public async Task<Result<long>> HospitalSignUp(UserSignUpDto dto)
         {
             if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
                 return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);

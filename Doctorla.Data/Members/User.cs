@@ -18,6 +18,7 @@ namespace Doctorla.Data.Members
         public string FamilyDiseases { get; set; } //Ailede Bulunan Hastalıklar
         public string RegularlyTakenMedicines { get; set; } // Düzcenli Kullanılan İlaçlar
         public string SurgicalHistory { get; set; } // Ameliyat geçmişi
+        public AccountStatus Status { get; set; }
         //public string HearUs { get; set; } // Bizi Nereden Duydunuz
     }
 }
