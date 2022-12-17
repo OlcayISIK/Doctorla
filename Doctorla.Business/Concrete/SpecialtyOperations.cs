@@ -6,6 +6,8 @@ using Doctorla.Core.Utils;
 using Doctorla.Data.Entities.SystemAppoinments;
 using Doctorla.Data.Shared;
 using Doctorla.Dto;
+using Doctorla.Dto.Members;
+using Doctorla.Dto.Members.DoctorEntity;
 using Doctorla.Dto.Shared;
 using Doctorla.Repository;
 using Microsoft.AspNetCore.Http;
@@ -34,9 +36,23 @@ namespace Doctorla.Business.Concrete
         #region Shared
         public async Task<Result<IEnumerable<SpecialtyDto>>> GetAll()
         {
-            var specialties = _unitOfWork.Appointments.GetAll();
+            var specialties = _unitOfWork.Specialties.GetAll();
             var dtos = await _mapper.ProjectTo<SpecialtyDto>(specialties).ToListAsync();
             return Result<IEnumerable<SpecialtyDto>>.CreateSuccessResult(dtos);
+        }
+
+        public async Task<Result<SpecialtyDto>> Get(long id)
+        {
+            var specialties = _unitOfWork.Specialties.Get(id);
+            var dto = await _mapper.ProjectTo<SpecialtyDto>(specialties).FirstOrDefaultAsync();
+            return Result<SpecialtyDto>.CreateSuccessResult(dto);
+        }
+
+        public async Task<Result<IEnumerable<DoctorDto>>> GetDoctorWithSpecialities(long id)
+        {
+            var doctorWithSpecialities = _unitOfWork.Doctors.GetDoctorWithSpecialities(id);
+            var dtos = await _mapper.ProjectTo<DoctorDto>(doctorWithSpecialities).ToListAsync();
+            return Result < IEnumerable<DoctorDto>>.CreateSuccessResult(dtos);
         }
         #endregion
 

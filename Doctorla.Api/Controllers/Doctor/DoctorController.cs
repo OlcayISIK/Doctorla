@@ -6,6 +6,7 @@ using Doctorla.Dto.Auth;
 using Doctorla.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Doctorla.Dto.Shared;
 using System.Collections;
@@ -30,6 +31,9 @@ namespace Doctorla.Api.Controllers.Doctor
             _operations = operations;
         }
 
+        /// <summary>
+        /// Get doctor
+        /// </summary>
         [HttpGet("get")]
         public async Task<Result<DoctorDto>> Get()
         {

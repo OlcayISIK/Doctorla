@@ -27,5 +27,11 @@ namespace Doctorla.Repository.Concrete
                    where d.Id == a.DoctorId
                    select d;
         }
+
+        public IQueryable<Doctor> GetDoctorWithSpecialities(long specialtyId)
+        {
+            var doctors = Context.Doctors.Where(x => !x.IsDeleted && x.SpecialtyId == specialtyId);
+            return doctors;
+        }
     }
 }
