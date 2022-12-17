@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Doctorla.Dto.Members.DoctorEntity;
 using Doctorla.Dto.Shared.Blog;
+using Doctorla.Dto.Members.Profile;
 
 namespace Doctorla.Api.Controllers.Doctor
 {
@@ -44,6 +45,12 @@ namespace Doctorla.Api.Controllers.Doctor
         public async Task<Result<bool>> Update(DoctorDto doctorDto)
         {
             return await _operations.UpdateFoDoctor(doctorDto);
+        }
+
+        [HttpPut("changepassword")]
+        public async Task<Result<bool>> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            return await _operations.ChangePassword(changePasswordDto);
         }
     }
 }

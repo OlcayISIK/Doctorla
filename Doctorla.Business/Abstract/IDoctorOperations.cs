@@ -1,9 +1,14 @@
-﻿using Doctorla.Data.Entities.SystemAppoinments;
+﻿using Doctorla.Business.Helpers;
+using Doctorla.Core.Enums;
+using Doctorla.Core.Utils;
+using Doctorla.Data.Entities.SystemAppoinments;
 using Doctorla.Dto;
 using Doctorla.Dto.Auth;
 using Doctorla.Dto.Members;
 using Doctorla.Dto.Members.DoctorEntity;
+using Doctorla.Dto.Members.Profile;
 using Doctorla.Dto.Shared;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +27,7 @@ namespace Doctorla.Business.Abstract
 
         #region Doctor
         Task<Result<bool>> UpdateFoDoctor(DoctorDto doctorDto);
+        Task<Result<bool>> ChangePassword(ChangePasswordDto changePasswordDto);
         #endregion
 
         #region Admin

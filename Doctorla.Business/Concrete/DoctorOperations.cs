@@ -9,6 +9,7 @@ using Doctorla.Data.Shared.Blog;
 using Doctorla.Dto;
 using Doctorla.Dto.Members;
 using Doctorla.Dto.Members.DoctorEntity;
+using Doctorla.Dto.Members.Profile;
 using Doctorla.Dto.Shared.Blog;
 using Doctorla.Repository;
 using Microsoft.AspNetCore.Http;
@@ -65,6 +66,21 @@ namespace Doctorla.Business.Concrete
             _mapper.Map(doctorDto, entity);
             await _unitOfWork.Commit();
 
+            return Result<bool>.CreateSuccessResult(true);
+        }
+
+        public async Task<Result<bool>> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            if (!Validate.Password(changePasswordDto.NewPassword))
+                return Result<bool>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
+            var doctorId = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims).Id;
+            var entity = await _unitOfWork.Doctors.GetAsTracking(doctorId).FirstOrDefaultAsync();
+            var cph = new CustomPasswordHasher();
+            var success = cph.VerifyPassword(entity.HashedPassword, changePasswordDto.OldPassword);
+            if (!success)
+                return Result<bool>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
+            entity.HashedPassword = cph.HashPassword(changePasswordDto.NewPassword);
+            await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);
         }
         #endregion
