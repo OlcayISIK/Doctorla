@@ -16,13 +16,17 @@ namespace Doctorla.Business.Abstract
     {
         #region Shared
         Task<Result<IEnumerable<DoctorPreviewDto>>> GetAll();
-        Task<Result<DoctorDto>> GetWithDetails(long doctodId);
+        Task<Result<DoctorDto>> Get(long? doctodId = null);
         Task<Result<IEnumerable<DoctorPreviewDto>>> GetAllAvailableInGivenDate(DateTime date);
+        #endregion
+
+        #region Doctor
+        Task<Result<bool>> UpdateFoDoctor(DoctorDto doctorDto);
         #endregion
 
         #region Admin
         Task<Result<bool>> Add(DoctorDto doctorDto);
-        Task<Result<bool>> Update(DoctorDto doctorDto);
+        Task<Result<bool>> UpdateForAdmin(DoctorDto doctorDto);
         Task<Result<bool>> Delete(long id);
         #endregion
     }

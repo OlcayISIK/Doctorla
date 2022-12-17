@@ -194,7 +194,7 @@ namespace Doctorla.Api
             });
 
             ServiceLocator.Initialize(app.ApplicationServices, _appSettings);
-            //UpdateDatabase(_appSettings.DatabaseConnectionString);
+            UpdateDatabase(_appSettings.DatabaseConnectionString);
             CreateFileSystemDirectories();
         }
 

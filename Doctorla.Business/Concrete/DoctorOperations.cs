@@ -42,9 +42,9 @@ namespace Doctorla.Business.Concrete
             return Result<IEnumerable<DoctorPreviewDto>>.CreateSuccessResult(dtos);
         }
 
-        public async Task<Result<DoctorDto>> GetWithDetails(long doctodId)
+        public async Task<Result<DoctorDto>> Get(long? doctodId = null)
         {
-            var doctor = _unitOfWork.Doctors.Get(doctodId);
+            var doctor = _unitOfWork.Doctors.Get(doctodId ?? ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims).Id);
             var dto = await _mapper.ProjectTo<DoctorDto>(doctor).FirstOrDefaultAsync();
             return Result<DoctorDto>.CreateSuccessResult(dto);
         }
@@ -54,6 +54,18 @@ namespace Doctorla.Business.Concrete
             var doctors = _unitOfWork.Doctors.GetAllAvailableInGivenDate(date);
             var dto = await _mapper.ProjectTo<DoctorPreviewDto>(doctors).ToListAsync();
             return Result<IEnumerable<DoctorPreviewDto>>.CreateSuccessResult(dto);
+        }
+        #endregion
+
+        #region Doctor
+        public async Task<Result<bool>> UpdateFoDoctor(DoctorDto doctorDto)
+        {
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var entity = await _unitOfWork.Doctors.GetAsTracking(claims.Id).FirstOrDefaultAsync();
+            _mapper.Map(doctorDto, entity);
+            await _unitOfWork.Commit();
+
+            return Result<bool>.CreateSuccessResult(true);
         }
         #endregion
 
@@ -82,7 +94,7 @@ namespace Doctorla.Business.Concrete
             return Result<bool>.CreateSuccessResult(true);
         }
 
-        public async Task<Result<bool>> Update(DoctorDto doctorDto)
+        public async Task<Result<bool>> UpdateForAdmin(DoctorDto doctorDto)
         {
             var entity = await _unitOfWork.Doctors.GetAsTracking(doctorDto.Id).FirstOrDefaultAsync();
             _mapper.Map(doctorDto, entity);
