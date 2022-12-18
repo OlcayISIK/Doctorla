@@ -15,6 +15,7 @@ namespace Doctorla.Data.Members.DoctorEntity
         public string Facebook { get; set; }
         public string Instagram { get; set; }
         public string Website { get; set; }
+        public string PhotoUrl { get; set; }
         //public int PageView { get; set; }
         //[NotMapped]
         //public int BlogView { get; set; }

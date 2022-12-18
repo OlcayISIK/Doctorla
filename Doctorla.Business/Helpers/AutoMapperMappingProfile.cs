@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Doctorla.Core.Enums;
 using Doctorla.Data;
+using Doctorla.Data.Members.DoctorEntity;
 using Doctorla.Data.Shared;
 using Doctorla.Data.Shared.Blog;
 using Doctorla.Dto;
+using Doctorla.Dto.Members.DoctorEntity;
 using Doctorla.Dto.Shared;
 using Doctorla.Dto.Shared.Blog;
 using System;
@@ -53,9 +55,10 @@ namespace Doctorla.Business.Helpers
             CreateMap<Appointment, AppointmentDto>().ReverseMap();
             CreateMap<Specialty, SpecialtyDto>().ReverseMap();
             CreateMap<BlogPost, BlogPostDto>().ReverseMap();
-    }
+            CreateMap<Doctor, DoctorDto>().ReverseMap();
+        }
 
-    private static string MapLanguageBoundString(string source, MultiString destination, Language destinationLanguage, Language sourceLanguage)
+        private static string MapLanguageBoundString(string source, MultiString destination, Language destinationLanguage, Language sourceLanguage)
     {
         if (sourceLanguage == destinationLanguage)
             return source;

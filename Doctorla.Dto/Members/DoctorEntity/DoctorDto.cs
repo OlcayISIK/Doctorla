@@ -17,6 +17,7 @@ namespace Doctorla.Dto.Members.DoctorEntity
         public string Title { get; set; }
         public string IdentificationNumber { get; set; }
         public string Gender { get; set; }
+        public string PhotoUrl { get; set; }
         public DateTime BirthDate { get; set; }
         public string Introduction { get; set; }
         public string Specialty { get; set; }
