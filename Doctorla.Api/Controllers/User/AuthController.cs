@@ -41,7 +41,7 @@ namespace Doctorla.Api.Controllers.User
         }
 
         /// <summary>
-        /// Doctor Register
+        /// User Register
         /// </summary>
         [HttpPost("register")]
         public async Task<Result<long>> Register([FromBody] UserSignUpDto signUpDto)

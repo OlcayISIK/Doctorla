@@ -1,5 +1,10 @@
 ﻿using Doctorla.Core;
+using Doctorla.Dto.Members;
+using Doctorla.Dto.Members.Profile;
+using Doctorla.Dto;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using Doctorla.Business.Abstract;
 
 namespace Doctorla.Api.Controllers.User
 {
@@ -11,9 +16,33 @@ namespace Doctorla.Api.Controllers.User
     [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.User)]
     public class UserController : Controller
     {
-        public IActionResult Index()
+
+        private readonly IUserOperations _operations;
+
+        public UserController(IUserOperations operations)
         {
-            return View();
+            _operations = operations;
+        }
+
+        /// <summary>
+        /// Get doctor
+        /// </summary>
+        [HttpGet("get")]
+        public async Task<Result<UserDto>> Get()
+        {
+            return await _operations.Get();
+        }
+
+        [HttpPut("update")]
+        public async Task<Result<bool>> Update(UserDto userDto)
+        {
+            return await _operations.UpdateForUser(userDto);
+        }
+
+        [HttpPut("changepassword")]
+        public async Task<Result<bool>> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            return await _operations.ChangePassword(changePasswordDto);
         }
     }
 }
