@@ -88,7 +88,7 @@ namespace Doctorla.Business.Concrete
             if (!success)
                 return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);     
             var token = TokenCreator.CreateToken(user.Id, user.Email, AccountType.User, _appSettings.TokenOptions);
-            await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = token.RefreshToken, AccountId = user.Id, AccountType = AccountType.User, TokenType = RedisTokenType.RefreshToken, Email = user.Email }, _appSettings.TokenOptions.RefreshTokenLifetime);
+            //await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = token.RefreshToken, AccountId = user.Id, AccountType = AccountType.User, TokenType = RedisTokenType.RefreshToken, Email = user.Email }, _appSettings.TokenOptions.RefreshTokenLifetime);
             return Result<TokenDto>.CreateSuccessResult(token);
         }
 
@@ -151,8 +151,8 @@ namespace Doctorla.Business.Concrete
         }
         public async Task<Result<long>> UserSignUp(UserSignUpDto dto)
         {
-            if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
-                return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
+            //if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
+            //    return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
             var existingMail = await _unitOfWork.Users.Where(x => x.Email == dto.Email).FirstOrDefaultAsync();
             if (existingMail != null)
                 return Result<long>.CreateErrorResult(ErrorCode.ObjectAlreadyExists);
@@ -279,8 +279,8 @@ namespace Doctorla.Business.Concrete
 
         public async Task<Result<long>> DoctorSignUp(DoctorSignUpDto dto)
         {
-            if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
-                return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
+            //if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
+            //    return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
             var existingMail = await _unitOfWork.Doctors.Where(x => x.Email == dto.Email).FirstOrDefaultAsync();
             if (existingMail != null)
                 return Result<long>.CreateErrorResult(ErrorCode.ObjectAlreadyExists);
@@ -303,6 +303,7 @@ namespace Doctorla.Business.Concrete
                 SpecialtyId = dto.SpecialtyId,
                 AccountStatus = AccountStatus.Created
             });
+            _unitOfWork.Doctors.Add(entity);
             await _unitOfWork.Commit();
 
             //// TODO fix what is wrong with user approving, then change this
@@ -421,8 +422,8 @@ namespace Doctorla.Business.Concrete
 
         public async Task<Result<long>> HospitalSignUp(UserSignUpDto dto)
         {
-            if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
-                return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
+            //if (!Validate.Username(dto.Email) || !Validate.Password(dto.Password))
+            //    return Result<long>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);
             var existingMail = await _unitOfWork.Hospitals.Where(x => x.Email == dto.Email).FirstOrDefaultAsync();
             if (existingMail != null)
                 return Result<long>.CreateErrorResult(ErrorCode.ObjectAlreadyExists);
