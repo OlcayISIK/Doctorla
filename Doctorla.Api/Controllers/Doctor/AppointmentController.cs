@@ -19,6 +19,7 @@ namespace Doctorla.Api.Controllers.Doctor
     [ApiController]
     [Route("api/doctor/[controller]")]
     [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.Doctor)]
+    [Authorize(AuthenticationSchemes = Constants.AuthenticationSchemes.Doctor)]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentOperations _operations;

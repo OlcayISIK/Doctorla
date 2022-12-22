@@ -5,6 +5,7 @@ using Doctorla.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Doctorla.Business.Abstract;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Doctorla.Api.Controllers.User
 {
@@ -14,6 +15,7 @@ namespace Doctorla.Api.Controllers.User
     [ApiController]
     [Route("api/user/[controller]")]
     [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.User)]
+    [Authorize(AuthenticationSchemes = Constants.AuthenticationSchemes.User)]
     public class UserController : Controller
     {
 

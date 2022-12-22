@@ -19,6 +19,7 @@ namespace Doctorla.Api.Controllers.User
     [ApiController]
     [Route("api/user/[controller]")]
     [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.User)]
+    [Authorize(AuthenticationSchemes = Constants.AuthenticationSchemes.User)]
     public class IyzicoController : Controller
     {
         private readonly IIyzicoOperations _operations;

@@ -16,6 +16,7 @@ namespace Doctorla.Api.Controllers.Admin
     [ApiController]
     [Route("api/admin/[controller]")]
     [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.Admin)]
+    [Authorize(AuthenticationSchemes = Constants.AuthenticationSchemes.Admin)]
     public class SpecialtyController
     {
         private readonly ISpecialtyOperations _operations;
