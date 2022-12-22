@@ -14,6 +14,7 @@ namespace Doctorla.Core
             public const string Doctor = "Doctor";
             public const string Hospital = "Hospital";
             public const string Admin = "Admin";
+            public const string Common = "Common";
         }
     }
 }

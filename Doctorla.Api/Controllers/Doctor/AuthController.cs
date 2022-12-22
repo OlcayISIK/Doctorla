@@ -12,6 +12,8 @@ namespace Doctorla.Api.Controllers.Doctor
     /// </summary>
     [ApiController]
     [Route("api/doctor/[controller]")]
+    [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.Doctor)]
+
     public class AuthController : Controller
     {
         private readonly IAuthOperations _authOperations;

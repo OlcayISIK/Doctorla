@@ -133,6 +133,7 @@ namespace Doctorla.Api
                 x.SwaggerDoc(Constants.AuthenticationSchemes.User, new OpenApiInfo { Title = "Doctorla User Api", Version = "v1" });
                 x.SwaggerDoc(Constants.AuthenticationSchemes.Doctor, new OpenApiInfo { Title = "Doctorla Doctor Api", Version = "v1" });
                 x.SwaggerDoc(Constants.AuthenticationSchemes.Admin, new OpenApiInfo { Title = "Doctorla Admin Api", Version = "v1" });
+                x.SwaggerDoc(Constants.AuthenticationSchemes.Common, new OpenApiInfo { Title = "Doctorla Common Api", Version = "v1" });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 //x.IncludeXmlComments(xmlPath);
@@ -190,6 +191,7 @@ namespace Doctorla.Api
                 endpoints.SwaggerEndpoint($"/swagger/{Constants.AuthenticationSchemes.User}/swagger.json", "Doctorla User API");
                 endpoints.SwaggerEndpoint($"/swagger/{Constants.AuthenticationSchemes.Doctor}/swagger.json", "Doctorla Doctor API");
                 endpoints.SwaggerEndpoint($"/swagger/{Constants.AuthenticationSchemes.Admin}/swagger.json", "Doctorla Admin API");
+                endpoints.SwaggerEndpoint($"/swagger/{Constants.AuthenticationSchemes.Common}/swagger.json", "Doctorla Common API");
                 endpoints.RoutePrefix = string.Empty;
             });
 

@@ -16,7 +16,9 @@ namespace Doctorla.Api.Controllers.Common
     /// Authentication related endpoints
     /// </summary>
     [ApiController]
-    [Route("api/doctor/[controller]")]
+    [Route("api/common/[controller]")]
+    [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.Common)]
+
     public class SpecialtyController : Controller
     {
         private readonly ISpecialtyOperations _operations;
