@@ -26,7 +26,7 @@ namespace Doctorla.Api.Controllers.Common
             _operations = operations;
         }
 
-        [HttpPost("get/{Id}")]
+        [HttpGet("get/{Id}")]
         public async Task<Result<DoctorDto>> Get(long Id)
         {
             return await _operations.Get(Id);

@@ -88,7 +88,7 @@ namespace Doctorla.Business.Concrete
             if (!success)
                 return Result<TokenDto>.CreateErrorResult(ErrorCode.InvalidEmailOrPassword);     
             var token = TokenCreator.CreateToken(user.Id, user.Email, AccountType.User, _appSettings.TokenOptions);
-            await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = token.RefreshToken, AccountId = user.Id, AccountType = AccountType.User, TokenType = RedisTokenType.RefreshToken, Email = user.Email }, _appSettings.TokenOptions.RefreshTokenLifetime);
+            //await _unitOfWork.RedisTokens.Set(new RedisToken { TokenValue = token.RefreshToken, AccountId = user.Id, AccountType = AccountType.User, TokenType = RedisTokenType.RefreshToken, Email = user.Email }, _appSettings.TokenOptions.RefreshTokenLifetime);
             return Result<TokenDto>.CreateSuccessResult(token);
         }
 

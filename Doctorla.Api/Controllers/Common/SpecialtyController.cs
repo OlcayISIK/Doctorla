@@ -35,13 +35,13 @@ namespace Doctorla.Api.Controllers.Common
             return await _operations.GetAll();
         }
 
-        [HttpPost("getDoctorWithSpecialities/{Id}")]
+        [HttpGet("getDoctorWithSpecialities/{Id}")]
         public async Task<Result<IEnumerable<DoctorDto>>> GetDoctorWithSpecialities(long Id)
         {
             return await _operations.GetDoctorWithSpecialities(Id);
         }
 
-        [HttpPost("get/{Id}")]
+        [HttpGet("get/{Id}")]
         public async Task<Result<SpecialtyDto>> Get(long Id)
         {
             return await _operations.Get(Id);
