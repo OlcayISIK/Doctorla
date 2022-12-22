@@ -14,6 +14,7 @@ namespace Doctorla.Data.Shared
         public DateTime AppointmentStartDate { get; set; }
         public DateTime AppointmentEndDate { get; set; }
         public AppointmentStatus AppointmentStatus { get; set; }
+        public bool OwnedByDoctor { get; set; }
         public string SessionKey { get; set; }
         public long Price { get; set; }
         public string PatientNote { get; set; }

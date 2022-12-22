@@ -17,10 +17,5 @@ namespace Doctorla.Repository.Concrete
         public AppointmentRepository(Context context) : base(context)
         {
         }
-
-        public IQueryable<Appointment> GetAllAvailableAppointments()
-        {
-            return Context.Appointments.Where(x => !x.IsDeleted && (x.AppointmentStatus == AppointmentStatus.Active || x.AppointmentStatus == AppointmentStatus.Requested));
-        }
     }
 }

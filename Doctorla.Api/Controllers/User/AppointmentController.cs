@@ -38,9 +38,27 @@ namespace Doctorla.Api.Controllers.User
         }
 
         /// <summary>
+        /// Gets all available appointments of doctor
+        /// </summary>
+        [HttpGet("getavailableappointments/{doctorId}")]
+        public async Task<Result<IEnumerable<AppointmentDto>>> GetAvailableAppointments(long doctorId)
+        {
+            return await _operations.GetAvailableAppointments(doctorId);
+        }
+
+        /// <summary>
         /// Adds an appointment
         /// </summary>
-        [HttpPost("request")]
+        [HttpPost("create")]
+        public async Task<Result<bool>> CreateAppointment(AppointmentDto appointmentDto)
+        {
+            return await _operations.CreateAppointment(appointmentDto);
+        }
+
+        /// <summary>
+        /// Adds an appointment
+        /// </summary>
+        [HttpPut("request")]
         public async Task<Result<bool>> RequestAppointment(long appointmentId)
         {
             return await _operations.RequestAppointment(appointmentId);
@@ -49,10 +67,10 @@ namespace Doctorla.Api.Controllers.User
         /// <summary>
         /// Cancels an appointment
         /// </summary>
-        [HttpPost("cancel")]
+        [HttpPut("cancel")]
         public async Task<Result<bool>> CancelAppointment(long appointmentId)
         {
-            return await _operations.CancelAppointment(appointmentId);
+            return await _operations.CancelAppointmentForUser(appointmentId);
         }
     }
 }

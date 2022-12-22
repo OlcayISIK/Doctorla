@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Doctorla.Dto.Shared;
 using System.Collections;
-using System.Collections.Generic;
 using Doctorla.Dto.Members.DoctorEntity;
 using Doctorla.Dto.Shared.Blog;
 using Doctorla.Dto.Members.Profile;

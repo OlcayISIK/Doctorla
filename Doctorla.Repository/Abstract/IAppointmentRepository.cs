@@ -9,6 +9,5 @@ namespace Doctorla.Repository.Abstract
 {
     public interface IAppointmentRepository : IRepository<Appointment>
     {
-        public IQueryable<Appointment> GetAllAvailableAppointments();
     }
 }

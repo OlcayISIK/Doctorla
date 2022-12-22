@@ -23,15 +23,40 @@ namespace Doctorla.Business.Concrete
         private readonly IUnitOfWork _unitOfWork;
         private readonly CustomMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly AppSettings _appSettings;
 
-        public AppointmentOperations(IUnitOfWork unitOfWork, CustomMapper mapper, IHttpContextAccessor httpContextAccessor, AppSettings appSettings)
+        public AppointmentOperations(IUnitOfWork unitOfWork, CustomMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
-            _appSettings = appSettings;
         }
+
+        #region Shared
+        public async Task<Result<bool>> CreateAppointment(AppointmentDto appointmentDto)
+        {
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var appointment = _mapper.Map<Appointment>(appointmentDto);
+            
+            if(claims.AccountType == AccountType.Doctor)
+            {
+                appointment.OwnedByDoctor = true;
+                appointment.DoctorId = claims.Id;
+                appointment.AppointmentStatus = AppointmentStatus.Active;
+            }
+            else
+            {
+                appointment.OwnedByDoctor = false;
+                appointment.UserId = claims.Id;
+                appointment.DoctorId = appointment.DoctorId;
+                appointment.AppointmentStatus = AppointmentStatus.Requested;
+            }
+
+            _unitOfWork.Appointments.Add(appointment);
+            await _unitOfWork.Commit();
+
+            return Result<bool>.CreateSuccessResult(true);
+        }
+        #endregion
 
         #region User
         public async Task<Result<IEnumerable<AppointmentDto>>> GetAllForUser()
@@ -42,16 +67,26 @@ namespace Doctorla.Business.Concrete
             return Result<IEnumerable<AppointmentDto>>.CreateSuccessResult(dtos);
         }
 
+        public async Task<Result<IEnumerable<AppointmentDto>>> GetAvailableAppointments(long doctorId)
+        {
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.DoctorId == doctorId && x.AppointmentStatus == AppointmentStatus.Active);
+            var dtos = await _mapper.ProjectTo<AppointmentDto>(appointments).ToListAsync();
+            return Result<IEnumerable<AppointmentDto>>.CreateSuccessResult(dtos);
+        }
+
         public async Task<Result<bool>> RequestAppointment(long appointmentId)
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
-            var appointment = await _unitOfWork.Appointments.GetAllAvailableAppointments().Where(x=>x.Id == appointmentId).AsTracking().FirstOrDefaultAsync();
-            appointment.AppointmentStatus = AppointmentStatus.Requested;
+            var appointment = await _unitOfWork.Appointments.Where(x=>x.Id == appointmentId && x.AppointmentStatus == AppointmentStatus.Active && x.OwnedByDoctor).AsTracking().FirstOrDefaultAsync();
+            appointment.AppointmentStatus = AppointmentStatus.Approved;
+            appointment.UserId = claims.Id;
+
             await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);
         }
 
-        public async Task<Result<bool>> CancelAppointment(long appointmentId)
+        public async Task<Result<bool>> CancelAppointmentForUser(long appointmentId)
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.UserId == claims.Id).FirstOrDefaultAsync();
@@ -70,29 +105,17 @@ namespace Doctorla.Business.Concrete
             return Result<IEnumerable<AppointmentDto>>.CreateSuccessResult(dtos);
         }
 
-        public async Task<Result<bool>> CreateAppointment(AppointmentDto appointmentDto)
-        {
-            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
-            var appointment = _mapper.Map<Appointment>(appointmentDto);
-            appointment.AppointmentStatus = AppointmentStatus.Active;
-
-            _unitOfWork.Appointments.Add(appointment);
-            await _unitOfWork.Commit();
-
-            return Result<bool>.CreateSuccessResult(true);
-        }
-
         public async Task<Result<bool>> ApproveAppointment(long appointmentId)
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
-            var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.DoctorId == claims.Id).FirstOrDefaultAsync();
+            var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.DoctorId == claims.Id && !x.OwnedByDoctor).FirstOrDefaultAsync();
             appointment.AppointmentStatus = AppointmentStatus.Approved;
-            //appointment.MeetingLink = MeetingCreator.CreateMeeting(_appSettings.ZoomApi);
+            appointment.MeetingLink = Guid.NewGuid().ToString();//MeetingCreator.CreateMeeting(_appSettings.ZoomApi);
             await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);
         }
 
-        public async Task<Result<bool>> RejectAppointment(long appointmentId)
+        public async Task<Result<bool>> CancelAppointmentForDoctor(long appointmentId)
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.DoctorId == claims.Id).FirstOrDefaultAsync();
