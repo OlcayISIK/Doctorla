@@ -11,6 +11,7 @@ namespace Doctorla.Data.Shared
     {
         public string Name { get; set; }
         public string Image { get; set; }
+        public long DoctorId { get; set; }
         public List<Doctor> Doctors { get; set; }
     }
 }

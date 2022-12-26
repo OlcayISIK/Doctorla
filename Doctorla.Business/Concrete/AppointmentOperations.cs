@@ -62,7 +62,7 @@ namespace Doctorla.Business.Concrete
         public async Task<Result<IEnumerable<AppointmentDto>>> GetAllForUser()
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
-            var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.UserId == claims.Id);
+            var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.UserId == claims.Id).Include(y => y.Doctor);
             var dtos = await _mapper.ProjectTo<AppointmentDto>(appointments).ToListAsync();
             return Result<IEnumerable<AppointmentDto>>.CreateSuccessResult(dtos);
         }
