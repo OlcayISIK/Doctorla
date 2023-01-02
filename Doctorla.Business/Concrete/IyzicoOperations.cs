@@ -39,13 +39,14 @@ namespace Doctorla.Business.Concrete
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
 
-            var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.UserId == claims.Id);
-            var dtos = await _mapper.ProjectTo<AppointmentDto>(appointments).ToListAsync();
-
-
             paymentDto.IpAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
             var user = await _unitOfWork.Users.Get(claims.Id).FirstOrDefaultAsync();
+            if (user == null)
+                return Result<bool>.CreateErrorResult(ErrorCode.ObjectNotFound);
             var appointment = await _unitOfWork.Appointments.Get(paymentDto.AppointmentId).Where(x => x.UserId == claims.Id).FirstOrDefaultAsync();
+            if (appointment == null)
+                return Result<bool>.CreateErrorResult(ErrorCode.ObjectNotFound);
+
             var paymentResult = IyzicoHelper.MakePayment(_appSettings.Iyzico, paymentDto, user, appointment);
 
             //Todo - add specialized enums for error status
