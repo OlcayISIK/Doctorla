@@ -67,8 +67,8 @@ namespace Doctorla.Business.Helpers
             buyer.GsmNumber = user.PhoneNumber;
             buyer.Email = user.Email;
             buyer.IdentityNumber = user.IdentificationNumber.ToString();
-            buyer.LastLoginDate = user.LastLoginDate.ToString(); //"2015-10-05 12:43:35"
-            buyer.RegistrationDate = user.CreatedAt.ToString(); //"2013-04-21 15:12:09"
+            buyer.LastLoginDate = user.LastLoginDate.ConvertDateToIyzicoFormat(); //"2015-10-05 12:43:35"
+            buyer.RegistrationDate = user.CreatedAt.ConvertDateToIyzicoFormat(); 
             buyer.RegistrationAddress = user.Address; //"Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
             buyer.Ip = paymentDto.IpAddress;
             buyer.City = user.City; //"Istanbul";
@@ -108,5 +108,10 @@ namespace Doctorla.Business.Helpers
             
             return Payment.Create(request, options);
         }
+        private static string ConvertDateToIyzicoFormat(this DateTime date)
+        {
+            return date.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+            
     }
 }
