@@ -3,10 +3,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Doctorla.Data.EF.Migrations
 {
-    public partial class DoctorTableFixed : Migration
+    public partial class DoctorConnectionsFixed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<long>(
+                name: "DoctorId",
+                table: "Specialties",
+                type: "bigint",
+                nullable: false,
+                defaultValue: 0L);
+
             migrationBuilder.AddColumn<string>(
                 name: "Image",
                 table: "Specialties",
@@ -55,6 +62,13 @@ namespace Doctorla.Data.EF.Migrations
                 table: "Doctors",
                 type: "nvarchar(max)",
                 nullable: true);
+
+            migrationBuilder.AddColumn<bool>(
+                name: "OwnedByDoctor",
+                table: "Appointments",
+                type: "bit",
+                nullable: false,
+                defaultValue: false);
 
             migrationBuilder.CreateTable(
                 name: "DoctorEducations",
@@ -135,7 +149,7 @@ namespace Doctorla.Data.EF.Migrations
                 name: "DoctorScientificMemberships",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BeginDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -213,6 +227,10 @@ namespace Doctorla.Data.EF.Migrations
                 table: "Doctors");
 
             migrationBuilder.DropColumn(
+                name: "DoctorId",
+                table: "Specialties");
+
+            migrationBuilder.DropColumn(
                 name: "Image",
                 table: "Specialties");
 
@@ -243,6 +261,10 @@ namespace Doctorla.Data.EF.Migrations
             migrationBuilder.DropColumn(
                 name: "Website",
                 table: "Doctors");
+
+            migrationBuilder.DropColumn(
+                name: "OwnedByDoctor",
+                table: "Appointments");
         }
     }
 }

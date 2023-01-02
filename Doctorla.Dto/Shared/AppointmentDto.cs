@@ -1,4 +1,6 @@
 ﻿using Doctorla.Core.Enums;
+using Doctorla.Dto.Members;
+using Doctorla.Dto.Members.DoctorEntity;
 using System;
 
 namespace Doctorla.Dto.Shared
@@ -14,6 +16,9 @@ namespace Doctorla.Dto.Shared
         public string MeetingLink { get; set; }
         public AppointmentStatus Status { get; set; }
         public long DoctorId { get; set; }
+        public DoctorDto Doctor { get; set; }
+        public long UserId { get; set; }
+        public UserDto User { get; set; }
 
 
 

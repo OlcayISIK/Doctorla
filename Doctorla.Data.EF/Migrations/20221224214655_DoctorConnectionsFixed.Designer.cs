@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Doctorla.Data.EF.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221217200341_DoctorTableFixed")]
-    partial class DoctorTableFixed
+    [Migration("20221224214655_DoctorConnectionsFixed")]
+    partial class DoctorConnectionsFixed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -316,9 +316,9 @@ namespace Doctorla.Data.EF.Migrations
 
             modelBuilder.Entity("Doctorla.Data.Members.DoctorEntity.DoctorScientificMembership", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime?>("BeginDate")
@@ -539,6 +539,9 @@ namespace Doctorla.Data.EF.Migrations
                     b.Property<string>("MeetingLink")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("OwnedByDoctor")
+                        .HasColumnType("bit");
+
                     b.Property<string>("PatientNote")
                         .HasColumnType("nvarchar(max)");
 
@@ -611,6 +614,9 @@ namespace Doctorla.Data.EF.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
