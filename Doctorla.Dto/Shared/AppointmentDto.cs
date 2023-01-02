@@ -12,7 +12,7 @@ namespace Doctorla.Dto.Shared
         public string DoctorDepartmentName { get; set; }
         public string Username { get; set; }
         public DateTime AppointmentStartDate { get; set; }
-        public DateTime AppointmentEndhDate { get; set; }
+        public DateTime AppointmentEndDate { get; set; }
         public string MeetingLink { get; set; }
         public AppointmentStatus Status { get; set; }
         public long DoctorId { get; set; }
