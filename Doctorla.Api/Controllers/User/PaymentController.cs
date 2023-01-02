@@ -20,15 +20,13 @@ namespace Doctorla.Api.Controllers.User
     [Route("api/user/[controller]")]
     [ApiExplorerSettings(GroupName = Constants.AuthenticationSchemes.User)]
     [Authorize(AuthenticationSchemes = Constants.AuthenticationSchemes.User)]
-    public class IyzicoController : Controller
+    public class PaymentController : Controller
     {
         private readonly IIyzicoOperations _operations;
-        private readonly AppSettings _appSettings;
 
-        public IyzicoController(IIyzicoOperations operations, AppSettings appSettings)
+        public PaymentController(IIyzicoOperations operations)
         {
             _operations = operations;
-            _appSettings = appSettings;
         }
         
         [HttpPost("payforappointment")]
