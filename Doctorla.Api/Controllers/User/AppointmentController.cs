@@ -59,7 +59,7 @@ namespace Doctorla.Api.Controllers.User
         /// Adds an appointment
         /// </summary>
         [HttpPut("request")]
-        public async Task<Result<bool>> RequestAppointment(long appointmentId)
+        public async Task<Result<bool>> RequestAppointment([FromBody]long appointmentId)
         {
             return await _operations.RequestAppointment(appointmentId);
         }

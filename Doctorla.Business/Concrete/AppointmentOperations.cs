@@ -70,7 +70,7 @@ namespace Doctorla.Business.Concrete
         public async Task<Result<IEnumerable<AppointmentDto>>> GetAvailableAppointments(long doctorId)
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
-            var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.DoctorId == doctorId && x.AppointmentStatus == AppointmentStatus.Active);
+            var appointments = _unitOfWork.Appointments.GetAll().Where(x => x.DoctorId == doctorId && x.AppointmentStatus == AppointmentStatus.Active && x.AppointmentStartDate > DateTime.UtcNow);
             var dtos = await _mapper.ProjectTo<AppointmentDto>(appointments).ToListAsync();
             return Result<IEnumerable<AppointmentDto>>.CreateSuccessResult(dtos);
         }

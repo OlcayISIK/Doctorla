@@ -8,17 +8,16 @@ namespace Doctorla.Dto.Shared
     public class AppointmentDto
     {
         public long Id { get; set; }
-        public string DoctorName { get; set; }
-        public string DoctorDepartmentName { get; set; }
-        public string Username { get; set; }
         public DateTime AppointmentStartDate { get; set; }
         public DateTime AppointmentEndDate { get; set; }
         public string MeetingLink { get; set; }
-        public AppointmentStatus Status { get; set; }
-        public long DoctorId { get; set; }
-        public DoctorDto Doctor { get; set; }
-        public long UserId { get; set; }
+        public double SessionTime { get; set; }
+        public string SessionPrice { get; set; }
+        public AppointmentStatus AppointmentStatus { get; set; }
         public UserDto User { get; set; }
+        public DoctorDto Doctor { get; set; }
+
+
 
 
 

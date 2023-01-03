@@ -21,7 +21,7 @@ namespace Doctorla.Data.Shared
         public string DoctorNote { get; set; }
         public string MeetingLink { get; set; }
 
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
         public User User { get; set; }
         public long DoctorId { get; set; }
         public Doctor Doctor { get; set; }
