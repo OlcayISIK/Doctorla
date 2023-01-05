@@ -51,7 +51,7 @@ namespace Doctorla.Api.Controllers.Doctor
         /// Approve an appointment for doctor
         /// </summary>
         [HttpPut("approve")]
-        public async Task<Result<bool>> ApproveAppointment(long appointmentId)
+        public async Task<Result<bool>> ApproveAppointment([FromBody]long appointmentId)
         {
             return await _operations.ApproveAppointment(appointmentId);
         }
@@ -60,7 +60,7 @@ namespace Doctorla.Api.Controllers.Doctor
         /// Rejects an appointment for doctor
         /// </summary>
         [HttpPut("cancel")]
-        public async Task<Result<bool>> CancelAppointment(long appointmentId)
+        public async Task<Result<bool>> CancelAppointment([FromBody]long appointmentId)
         {
             return await _operations.CancelAppointmentForDoctor(appointmentId);
         }
