@@ -9,6 +9,6 @@ namespace Doctorla.Data.Members.DoctorEntity
 {
     public class DoctorEducationDto
     {
-
+        public string Name { get; set; }
     }
 }

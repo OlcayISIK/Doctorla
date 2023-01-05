@@ -57,9 +57,15 @@ namespace Doctorla.Business.Helpers
             CreateMap<Appointment, AppointmentDto>().ReverseMap();
             CreateMap<Specialty, SpecialtyDto>().ReverseMap();
             CreateMap<BlogPost, BlogPostDto>().ReverseMap();
-            CreateMap<Doctor, DoctorDto>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
 
+            #region Doctor
+            CreateMap<Doctor, DoctorDto>().ReverseMap();
+            CreateMap<DoctorEducation, DoctorEducationDto>().ReverseMap();
+            CreateMap<DoctorExperience, DoctorExperienceDto>().ReverseMap();
+            CreateMap<DoctorMedicalInterest, DoctorMedicalInterestDto>().ReverseMap();
+            CreateMap<DoctorScientificMembership, DoctorScientificMembershipDto>().ReverseMap();
+            #endregion
         }
 
         private static string MapLanguageBoundString(string source, MultiString destination, Language destinationLanguage, Language sourceLanguage)

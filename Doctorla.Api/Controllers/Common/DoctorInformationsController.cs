@@ -31,5 +31,11 @@ namespace Doctorla.Api.Controllers.Common
         {
             return await _operations.Get(Id);
         }
+
+        [HttpGet("getdoctordetails/{id}")]
+        public async Task<Result<DoctorDetailsDto>> GetDoctorDetails(long id)
+        {
+            return await _operations.GetDoctorDetails(id);
+        }
     }
 }

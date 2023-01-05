@@ -22,11 +22,12 @@ namespace Doctorla.Business.Abstract
         #region Shared
         Task<Result<IEnumerable<DoctorPreviewDto>>> GetAll();
         Task<Result<DoctorDto>> Get(long? doctodId = null);
-        Task<Result<IEnumerable<DoctorPreviewDto>>> GetAllAvailableInGivenDate(DateTime date);
+        Task<Result<DoctorDetailsDto>> GetDoctorDetails(long? doctodId = null);
+        //Task<Result<IEnumerable<DoctorPreviewDto>>> GetAllAvailableInGivenDate(DateTime date);
         #endregion
 
         #region Doctor
-        Task<Result<bool>> UpdateFoDoctor(DoctorDto doctorDto);
+        Task<Result<bool>> UpdateForDoctor(DoctorDto doctorDto);
         Task<Result<bool>> ChangePassword(ChangePasswordDto changePasswordDto);
         #endregion
 

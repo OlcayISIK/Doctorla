@@ -41,10 +41,16 @@ namespace Doctorla.Api.Controllers.Doctor
             return await _operations.Get();
         }
 
+        [HttpGet("getdoctordetails")]
+        public async Task<Result<DoctorDetailsDto>> GetDoctorDetails()
+        {
+            return await _operations.GetDoctorDetails();
+        }
+
         [HttpPut("update")]
         public async Task<Result<bool>> Update(DoctorDto doctorDto)
         {
-            return await _operations.UpdateFoDoctor(doctorDto);
+            return await _operations.UpdateForDoctor(doctorDto);
         }
 
         [HttpPut("changepassword")]

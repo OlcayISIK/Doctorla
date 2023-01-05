@@ -1,6 +1,7 @@
 ﻿using Doctorla.Data.Entities;
 using Doctorla.Data.Entities.SystemUsers;
 using Doctorla.Data.Members.DoctorEntity;
+using Doctorla.Repository.QueryObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Doctorla.Repository.Abstract
     {
         IQueryable<Doctor> GetAllAvailableInGivenDate(DateTime date);
         IQueryable<Doctor> GetDoctorWithSpecialities(long specialtyId);
+        DoctorDetailsQueryObject GetDoctorDetails(long doctorId);
     }
 }
