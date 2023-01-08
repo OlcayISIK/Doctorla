@@ -10,6 +10,6 @@ namespace Doctorla.Data.Members.DoctorEntity
 {
     public class DoctorScientificMembershipDto
     {
-
+        public string Name { get; set; }
     }
 }

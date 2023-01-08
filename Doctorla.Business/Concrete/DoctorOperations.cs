@@ -50,16 +50,29 @@ namespace Doctorla.Business.Concrete
             return Result<DoctorDto>.CreateSuccessResult(dto);
         }
 
-        public async Task<Result<IEnumerable<DoctorPreviewDto>>> GetAllAvailableInGivenDate(DateTime date)
+        public async Task<Result<DoctorDetailsDto>> GetDoctorDetails(long? doctodId = null)
         {
-            var doctors = _unitOfWork.Doctors.GetAllAvailableInGivenDate(date);
-            var dto = await _mapper.ProjectTo<DoctorPreviewDto>(doctors).ToListAsync();
-            return Result<IEnumerable<DoctorPreviewDto>>.CreateSuccessResult(dto);
+            var doctorDetails = _unitOfWork.Doctors.GetDoctorDetails(doctodId ?? ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims).Id);
+
+            var detailsDto = new DoctorDetailsDto();
+            detailsDto.Educations = await _mapper.ProjectTo<DoctorEducationDto>(doctorDetails.DoctorEducations).ToListAsync();
+            detailsDto.Experiences = await _mapper.ProjectTo<DoctorExperienceDto>(doctorDetails.DoctorExperiences).ToListAsync();
+            detailsDto.MedicalInterests =  await _mapper.ProjectTo<DoctorMedicalInterestDto>(doctorDetails.DoctorMedicalInterests).ToListAsync();
+            detailsDto.ScientificMemberships = await _mapper.ProjectTo<DoctorScientificMembershipDto>(doctorDetails.DoctorScientificMembership).ToListAsync();
+
+            return Result<DoctorDetailsDto>.CreateSuccessResult(detailsDto);
         }
+
+        //public async Task<Result<IEnumerable<DoctorPreviewDto>>> GetAllAvailableInGivenDate(DateTime date)
+        //{
+        //    var doctors = _unitOfWork.Doctors.GetAllAvailableInGivenDate(date);
+        //    var dto = await _mapper.ProjectTo<DoctorPreviewDto>(doctors).ToListAsync();
+        //    return Result<IEnumerable<DoctorPreviewDto>>.CreateSuccessResult(dto);
+        //}
         #endregion
 
         #region Doctor
-        public async Task<Result<bool>> UpdateFoDoctor(DoctorDto doctorDto)
+        public async Task<Result<bool>> UpdateForDoctor(DoctorDto doctorDto)
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var entity = await _unitOfWork.Doctors.GetAsTracking(claims.Id).FirstOrDefaultAsync();

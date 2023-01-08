@@ -11,6 +11,6 @@ namespace Doctorla.Data.Members.DoctorEntity
 {
     public class DoctorExperienceDto
     {
-
+        public string Name { get; set; }
     }
 }
