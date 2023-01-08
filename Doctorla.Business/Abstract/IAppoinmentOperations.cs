@@ -19,6 +19,7 @@ namespace Doctorla.Business.Abstract
         #region User
         Task<Result<IEnumerable<AppointmentDto>>> GetAllForUser();
         Task<Result<IEnumerable<AppointmentDto>>> GetAvailableAppointments(long doctorId);
+        Task<Result<AppointmentDto>> Get(long Id);
         Task<Result<bool>> RequestAppointment(long appointmentId);
         Task<Result<bool>> CancelAppointmentForUser(long appointmentId);
         #endregion

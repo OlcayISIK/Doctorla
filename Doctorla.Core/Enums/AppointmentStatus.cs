@@ -10,6 +10,7 @@ namespace Doctorla.Core.Enums
     {
         Active,
         Requested,
+        WaitingPayment,
         Approved,
         InProgress,
         Ended,

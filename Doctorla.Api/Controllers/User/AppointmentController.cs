@@ -72,5 +72,14 @@ namespace Doctorla.Api.Controllers.User
         {
             return await _operations.CancelAppointmentForUser(appointmentId);
         }
+
+        /// <summary>
+        /// Gets an appointment
+        /// </summary>
+        [HttpGet("get/{appointmentId}")]
+        public async Task<Result<AppointmentDto>> Get(long appointmentId)
+        {
+            return await _operations.Get(appointmentId);
+        }
     }
 }

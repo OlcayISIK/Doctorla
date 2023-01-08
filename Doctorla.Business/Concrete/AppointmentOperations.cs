@@ -67,6 +67,14 @@ namespace Doctorla.Business.Concrete
             return Result<IEnumerable<AppointmentDto>>.CreateSuccessResult(dtos);
         }
 
+        public async Task<Result<AppointmentDto>> Get(long Id)
+        {
+            var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
+            var appointment = _unitOfWork.Appointments.Get(Id).Include(x => x.Doctor);
+            var dto = await _mapper.ProjectTo<AppointmentDto>(appointment).FirstOrDefaultAsync();
+            return Result<AppointmentDto>.CreateSuccessResult(dto);
+        }
+
         public async Task<Result<IEnumerable<AppointmentDto>>> GetAvailableAppointments(long doctorId)
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
@@ -79,7 +87,7 @@ namespace Doctorla.Business.Concrete
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var appointment = await _unitOfWork.Appointments.Where(x=>x.Id == appointmentId && x.AppointmentStatus == AppointmentStatus.Active && x.OwnedByDoctor).AsTracking().FirstOrDefaultAsync();
-            appointment.AppointmentStatus = AppointmentStatus.Approved;
+            appointment.AppointmentStatus = AppointmentStatus.WaitingPayment;
             appointment.UserId = claims.Id;
 
             await _unitOfWork.Commit();
@@ -109,8 +117,7 @@ namespace Doctorla.Business.Concrete
         {
             var claims = ClaimUtils.GetClaims(_httpContextAccessor.HttpContext.User.Claims);
             var appointment = await _unitOfWork.Appointments.GetAsTracking(appointmentId).Where(x => x.DoctorId == claims.Id && !x.OwnedByDoctor).FirstOrDefaultAsync();
-            appointment.AppointmentStatus = AppointmentStatus.Approved;
-            appointment.MeetingLink = Guid.NewGuid().ToString();//MeetingCreator.CreateMeeting(_appSettings.ZoomApi);
+            appointment.AppointmentStatus = AppointmentStatus.WaitingPayment;
             await _unitOfWork.Commit();
             return Result<bool>.CreateSuccessResult(true);
         }

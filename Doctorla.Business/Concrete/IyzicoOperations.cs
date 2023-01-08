@@ -46,9 +46,13 @@ namespace Doctorla.Business.Concrete
             var appointment = await _unitOfWork.Appointments.Get(paymentDto.AppointmentId).Where(x => x.UserId == claims.Id).FirstOrDefaultAsync();
             if (appointment == null)
                 return Result<bool>.CreateErrorResult(ErrorCode.ObjectNotFound);
-
             var paymentResult = IyzicoHelper.MakePayment(_appSettings.Iyzico, paymentDto, user, appointment);
-
+            if (paymentResult)
+            {
+                appointment.MeetingLink = Guid.NewGuid().ToString();//MeetingCreator.CreateMeeting(_appSettings.ZoomApi);
+                appointment.AppointmentStatus = AppointmentStatus.Approved;
+                await _unitOfWork.Commit();
+            }
             //Todo - add specialized enums for error status
             return paymentResult ? Result<bool>.CreateSuccessResult(true) : Result<bool>.CreateErrorResult(ErrorCode.InternalServerError);
         }
