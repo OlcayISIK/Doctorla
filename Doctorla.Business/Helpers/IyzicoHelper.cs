@@ -42,9 +42,9 @@ namespace Doctorla.Business.Helpers
             var request = new CreatePaymentRequest();
             request.Locale = Locale.TR.ToString();
             request.ConversationId = appointment.Id.ToString() + ":" + user.Id.ToString();
-            request.Price = appointment.Price.ToString();
+            request.Price = appointment.SessionPrice.ToString();
             //For commision
-            request.PaidPrice = appointment.Price.ToString();
+            request.PaidPrice = appointment.SessionPrice.ToString();
             request.Currency = Currency.TRY.ToString();
             //request.Installment = 1;
             request.BasketId = appointment.SessionKey;
@@ -101,7 +101,7 @@ namespace Doctorla.Business.Helpers
             basketItem.Category2 = secondCategory;
             basketItem.ItemType = BasketItemType.VIRTUAL.ToString();
             //Todo - check if this asks for 9 as 900 (like stripe)
-            basketItem.Price = appointment.Price.ToString();
+            basketItem.Price = appointment.SessionPrice.ToString();
             basketItems.Add(basketItem);
 
             request.BasketItems = basketItems;
